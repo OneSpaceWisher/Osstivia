@@ -89,7 +89,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 #graph-node-panel.open { transform: translateX(0); }
 
 /* Coverflow */
-.coverflow-wrap { perspective: 1200px; position:relative; height:520px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.coverflow-wrap { perspective: 1200px; position:relative; height:520px; display:flex; align-items:center; justify-content:center; overflow:hidden; contain:paint; }
 .cf-item {
   position:absolute; width:260px; cursor:pointer;
   transition: all .45s cubic-bezier(.25,.46,.45,.94);
@@ -323,27 +323,27 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/SNEDDSResearch.jpg?v=1781479852" alt="SNEDDS Research" loading="lazy">
-        <div class="gallery-caption">SNEDDS formulation mechanism and nano-emulsion droplet formation</div>
+        <div class="gallery-caption">SNEDDS self-nanoemulsification mechanism: spontaneous formation of oil-in-water nano-droplets (&lt;200 nm) upon GI contact, expanding intestinal absorption surface area far beyond a conventional capsule</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.07s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/SNEDDSResearch2.jpg?v=1781479850" alt="SNEDDS Research 2" loading="lazy">
-        <div class="gallery-caption">Bioavailability comparison: conventional vs. SNEDDS oral delivery</div>
+        <div class="gallery-caption">SNEDDS advantages over conventional oral delivery: enhanced solubility, dissolution rate, mucosal permeation, P-gp efflux inhibition, and lymphatic transport for dramatically improved bioavailability</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.14s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/SNEDDSResearch3.jpg?v=1781479850" alt="SNEDDS Research 3" loading="lazy">
-        <div class="gallery-caption">SNEDDS particle size distribution and dissolution kinetics</div>
+        <div class="gallery-caption">SNEDDS nano-droplet characterization: particle size distribution, zeta potential stability, and dissolution profile in simulated GI fluid demonstrating rapid self-emulsification</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.21s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/SNEDDSResearch4.jpg?v=1781479883" alt="SNEDDS Research 4" loading="lazy">
-        <div class="gallery-caption">Phase diagram for optimal SNEDDS excipient ratios and self-emulsification region</div>
+        <div class="gallery-caption">Ternary phase diagram for SNEDDS formulation optimization: oil/surfactant/co-surfactant ratios defining the self-emulsification region and nano-droplet formation boundary</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.28s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/1-s2.0-S0378517311001827-fx1.jpg?v=1783411863" alt="SNEDDS mechanism graphical abstract" loading="lazy">
-        <div class="gallery-caption">SNEDDS graphical abstract: lipophilic drug absorption pathway</div>
+        <div class="gallery-caption">SNEDDS oral absorption graphical abstract: lymphatic uptake of lipid-encapsulated actives via chylomicron packaging in enterocytes, bypassing hepatic first-pass metabolism with pharmacokinetic enhancement data</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.35s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883" alt="FLL graphical abstract" loading="lazy">
-        <div class="gallery-caption">FLL comprehensive mechanism graphical abstract: bone remodeling, calcium, gut, and antioxidant pathways</div>
+        <div class="gallery-caption">FLL comprehensive mechanism graphical abstract: simultaneous activation of OPG/RANKL bone remodeling, calcium absorption via VDR/CaSR axis, Nrf2/HO-1 antioxidant defense, and gut microbiota modulation</div>
       </div>
     </div>
   </div>
@@ -616,7 +616,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 </section>
 
 <!-- RESEARCH SNIPPETS COVERFLOW -->
-<section id="snippets" style="padding:7rem 1.5rem;background:var(--card);border-bottom:1px solid var(--border);overflow:hidden;">
+<section id="snippets" style="padding:7rem 1.5rem;background:var(--card);border-bottom:1px solid var(--border);overflow:hidden;contain:layout paint;">
   <div style="max-width:1280px;margin:0 auto;">
     <div class="reveal" style="max-width:700px;margin-bottom:4rem;">
       <div class="section-label" style="margin-bottom:1rem;color:var(--accent);">FLL Research Library</div>
@@ -1313,7 +1313,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 // ─── Coverflow Carousel ─────────────────────────────────────────────────────
 (function initCoverflow() {
   const snippets = [
-    { src: S + 'Screenshot_20251230_153046_Chrome.jpg?v=1783411025',  label: 'Clinical Trial: BMD Results (Leung et al. 2015)' },
+    { src: S + 'Screenshot_20251230_153046_Chrome.jpg?v=1783411025',  label: 'FLL Preclinical Study: Femoral BMD & Bone Architecture by Dose' },
     { src: S + 'Screenshot_20251230_153105_Chrome.jpg?v=1783411025',  label: 'Ca Absorption & Retention Rate: Dose-Response' },
     { src: S + 'Screenshot_20251230_153122_Chrome.jpg?v=1783411025',  label: 'Renal 1-OHase mRNA Upregulation (Vitamin D Axis)' },
     { src: S + 'Screenshot_20251230_155204_Chrome.jpg?v=1783411025',  label: 'Wnt/beta-catenin: DKK1 & SOST Inhibition Research' },
@@ -1327,16 +1327,16 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     { src: S + 'Screenshot_20260107_074245_Chrome.jpg?v=1783411025', label: 'GO Enrichment Analysis' },
     { src: S + 'image_2.png?v=1783411025',                           label: 'FLL Bone Remodeling Mechanism Overview' },
     { src: S + 'image_3.png?v=1783411025',                           label: 'Anti-Osteoporosis Pathway: NFATc1/OPG/Wnt' },
-    { src: S + 'IMG_9200.jpg?v=1783411025',                          label: 'Osstivia Product' },
+    { src: S + 'IMG_9200.jpg?v=1783411025',                          label: 'FLL + Exercise: Trabecular Bone Spacing, Number & Histology' },
     { src: S + 'image_4.png?v=1783411025',                           label: 'PTH/CaSR/ERa Regulatory Cascade' },
     { src: S + 'image_5.png?v=1783411025',                           label: 'microCT Bone Microarchitecture' },
     { src: S + 'image_6.png?v=1783411025',                           label: 'Calcium Absorption and Retention' },
-    { src: S + 'image_7.png?v=1783411025',                           label: 'Epiphyseal Growth Plate Cartilage Thickness' },
-    { src: S + 'image_8.png?v=1783411026',                           label: 'GO Term Enrichment: Growth Factor Response' },
-    { src: S + 'image_9.png?v=1783411025',                           label: 'Condylar Cartilage Histology' },
-    { src: S + 'IMG_0608.jpg?v=1783411025',                          label: 'Osstivia Product' },
-    { src: S + 'IMG_1503.jpg?v=1783411025',                          label: 'Osstivia Product' },
-    { src: S + 'IMG_1502.jpg?v=1783411025',                          label: 'Osstivia Product' },
+    { src: S + 'image_7.png?v=1783411025',                           label: 'FLL 3D microCT: Bone Architecture & Trabecular Parameter Analysis' },
+    { src: S + 'image_8.png?v=1783411026',                           label: 'FLL Bone IHC: Protein Expression in Normal, Aging & Treated Bone' },
+    { src: S + 'image_9.png?v=1783411025',                           label: 'FLL Neuroprotection: Gut Flora → Oxidative Stress → Sirt6/NF-κB Pathway' },
+    { src: S + 'IMG_0608.jpg?v=1783411025',                          label: 'GO Biological Process Enrichment: FLL Osteoblast & Ossification Pathways' },
+    { src: S + 'IMG_1503.jpg?v=1783411025',                          label: 'GO Molecular Function Enrichment: FLL Kinase, Receptor & Transcription Targets' },
+    { src: S + 'IMG_1502.jpg?v=1783411025',                          label: 'GO Cellular Component Enrichment: FLL Nuclear Matrix & Chromatin Locations' },
     { src: S + 'image_10.png?v=1783411026',                          label: 'NF-kB p65 and Cathepsin K Immunostaining' },
     { src: S + 'image_11.png?v=1783411026',                          label: '3D microCT Bone Reconstruction' },
     { src: S + 'image_12.png?v=1783411026',                          label: 'Sirt6 Immunostaining: FLL/Sirt6/NF-kB Axis' },
