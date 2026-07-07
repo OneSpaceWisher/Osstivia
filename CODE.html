@@ -89,7 +89,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 #graph-node-panel.open { transform: translateX(0); }
 
 /* Coverflow */
-.coverflow-wrap { perspective: 1200px; position:relative; height:420px; display:flex; align-items:center; justify-content:center; }
+.coverflow-wrap { perspective: 1200px; position:relative; height:520px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .cf-item {
   position:absolute; width:260px; cursor:pointer;
   transition: all .45s cubic-bezier(.25,.46,.45,.94);
@@ -604,12 +604,12 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
         <div class="gallery-caption">GO Biological Process: regulation of osteoblast differentiation (GO:0045667), positive regulation of ossification, positive regulation of calcium ion import (GO:0090280)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.80s;">
-        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/BMRI2015-281873.001.jpg?v=1783411025" alt="BMRI condylar growth 1" loading="lazy">
-        <div class="gallery-caption">BMRI 2015: Mandibular condylar cartilage growth factors and signaling cascades, Figure 1</div>
+        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/BMRI2015-281873.001.jpg?v=1783411025" alt="FLL triterpene molecular structure" loading="lazy">
+        <div class="gallery-caption">FLL Triterpene Structure: Oleanolic Acid Molecular Formula</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.85s;">
-        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/BMRI2015-281873.002.jpg?v=1783411025" alt="BMRI condylar growth 2" loading="lazy">
-        <div class="gallery-caption">BMRI 2015: Condylar growth biomolecular signals and endochondral ossification cascade, Figure 2</div>
+        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/BMRI2015-281873.002.jpg?v=1783411025" alt="FLL bioactive saponin and glycoside structures" loading="lazy">
+        <div class="gallery-caption">FLL Bioactive Compounds: Saponin & Glycoside Structures</div>
       </div>
     </div>
   </div>
@@ -1319,8 +1319,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     { src: S + 'Screenshot_20251230_155204_Chrome.jpg?v=1783411025',  label: 'Wnt/beta-catenin: DKK1 & SOST Inhibition Research' },
     { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',  label: 'FLL Bioactive Compound Molecular Structure' },
     { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',  label: 'FLL Bone Quality Improvement: Clinical Evidence' },
-    { src: S + 'BMRI2015-281873.001.jpg?v=1783411025',               label: 'BMRI 2015: Condylar Growth Figure 1' },
-    { src: S + 'BMRI2015-281873.002.jpg?v=1783411025',               label: 'BMRI 2015: Condylar Growth Figure 2' },
+    { src: S + 'BMRI2015-281873.001.jpg?v=1783411025',               label: 'FLL Triterpene Structure: Oleanolic Acid Molecular Formula' },
+    { src: S + 'BMRI2015-281873.002.jpg?v=1783411025',               label: 'FLL Bioactive Compounds: Saponin & Glycoside Structures' },
     { src: S + 'Screenshot_20251230_234143_Chrome.jpg?v=1783411025', label: 'Sirt6/NF-kB Axis Research' },
     { src: S + 'Screenshot_20251230_233830_Chrome.jpg?v=1783411024', label: 'Gut Microbiota Regulation' },
     { src: S + 'Screenshot_20251230_235137_Chrome.jpg?v=1783411025', label: 'Nrf2/HO-1 Antioxidant Pathway' },
@@ -1350,6 +1350,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     { src: S + 'FLLClinicalStudy.png?v=1781936649',                  label: 'Clinical Trial Design and Participants' },
     { src: S + 'FLLClinicalStudy3.png?v=1781936649',                 label: 'Clinical Trial: Biochemical Markers' },
     { src: S + 'FLLClinicalStudy4.png?v=1781936649',                 label: 'Clinical Trial Conclusion' },
+    { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883', label: 'FLL Anti-Osteoporosis Research: Study Graphical Abstract' },
+    { src: S + 'SNEDDSResearch4.jpg?v=1781479883',                   label: 'SNEDDS Research: Lipid Nano-Droplet Formation' },
+    { src: S + 'SNEDDSResearch.jpg?v=1781479852',                    label: 'SNEDDS Research: Oral Bioavailability Enhancement' },
+    { src: S + 'SNEDDSResearch3.jpg?v=1781479850',                   label: 'SNEDDS Research: Pharmacokinetic Profile Data' },
+    { src: S + 'SNEDDSResearch2.jpg?v=1781479850',                   label: 'SNEDDS Research: Formulation & Nano-Characterization' },
+    { src: S + '1-s2.0-S0378517311001827-fx1.jpg?v=1783411863',      label: 'SNEDDS Pharmaceutical Research: Graphical Abstract' },
   ];
 
   let cfActive = 0;
@@ -1405,7 +1411,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 
       const el = document.createElement('div');
       el.className = 'cf-item';
-      el.style.cssText = `transform:translateX(${tx}px) rotateY(${ry}deg) scale(${scale});opacity:${opacity};z-index:${zIdx};filter:brightness(${bright}%);`;
+      el.style.cssText = `top:50%;transform:translateX(${tx}px) translateY(-50%) rotateY(${ry}deg) scale(${scale});opacity:${opacity};z-index:${zIdx};filter:brightness(${bright}%);`;
       el.innerHTML = `
         <div style="border-radius:.75rem;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:var(--card);box-shadow:0 20px 60px rgba(0,0,0,.6);">
           <img src="${item.src}" alt="${item.label}" loading="lazy" style="width:100%;height:200px;object-fit:cover;object-position:top;display:block;">
