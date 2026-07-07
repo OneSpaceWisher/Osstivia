@@ -1089,10 +1089,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 
   const sim = d3.forceSimulation(nodes)
     .force('link', d3.forceLink(links).id(d => d.id).distance(d => {
-      if (d.source.group === 0 || d.target.group === 0) return 120;
-      return 80;
+      if (d.source.group === 0 || d.target.group === 0) return 65;
+      return 42;
     }).strength(0.7))
-    .force('charge', d3.forceManyBody().strength(d => d.val >= 20 ? -600 : -220))
+    .force('charge', d3.forceManyBody().strength(d => d.val >= 20 ? -160 : -70))
     .force('center', d3.forceCenter(canvas.width / 2, canvas.height / 2))
     .force('collision', d3.forceCollide().radius(d => Math.sqrt(d.val) * 3.5))
     .alphaDecay(0.015)
@@ -1192,7 +1192,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      const label = node.name.length > 14 ? node.name.slice(0, 13) + '.' : node.name;
+      const label = node.name;
       const tw    = ctx.measureText(label).width + 8;
       const th    = fontSize + 5;
       // White pill background
@@ -1313,12 +1313,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 // ─── Coverflow Carousel ─────────────────────────────────────────────────────
 (function initCoverflow() {
   const snippets = [
-    { src: S + 'Screenshot_20251230_153046_Chrome.jpg?v=1783411025',  label: 'RANKL/OPG Pathway Suppression' },
-    { src: S + 'Screenshot_20251230_153105_Chrome.jpg?v=1783411025',  label: 'Osteoclastogenesis Inhibition Data' },
-    { src: S + 'Screenshot_20251230_153122_Chrome.jpg?v=1783411025',  label: 'Wnt/BMP Upregulation Results' },
-    { src: S + 'Screenshot_20251230_155204_Chrome.jpg?v=1783411025',  label: 'Bone Mineral Density Improvement' },
-    { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',  label: 'PI3K/Akt Osteoblast Survival' },
-    { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',  label: 'Calcium Absorption Rate Increase' },
+    { src: S + 'Screenshot_20251230_153046_Chrome.jpg?v=1783411025',  label: 'Clinical Trial: BMD Results (Leung et al. 2015)' },
+    { src: S + 'Screenshot_20251230_153105_Chrome.jpg?v=1783411025',  label: 'Ca Absorption & Retention Rate: Dose-Response' },
+    { src: S + 'Screenshot_20251230_153122_Chrome.jpg?v=1783411025',  label: 'Renal 1-OHase mRNA Upregulation (Vitamin D Axis)' },
+    { src: S + 'Screenshot_20251230_155204_Chrome.jpg?v=1783411025',  label: 'Wnt/beta-catenin: DKK1 & SOST Inhibition Research' },
+    { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',  label: 'FLL Bioactive Compound Molecular Structure' },
+    { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',  label: 'FLL Bone Quality Improvement: Clinical Evidence' },
     { src: S + 'BMRI2015-281873.001.jpg?v=1783411025',               label: 'BMRI 2015: Condylar Growth Figure 1' },
     { src: S + 'BMRI2015-281873.002.jpg?v=1783411025',               label: 'BMRI 2015: Condylar Growth Figure 2' },
     { src: S + 'Screenshot_20251230_234143_Chrome.jpg?v=1783411025', label: 'Sirt6/NF-kB Axis Research' },
