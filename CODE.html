@@ -254,10 +254,6 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
       </div>
     </div>
   </div>
-  <!-- Product bottle visualization -->
-  <div class="animate-float" style="position:absolute;right:max(2%,2rem);top:50%;transform:translateY(-50%);display:none;" id="hero-product-wrap">
-    <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/IMG_9200.jpg?v=1783411025" alt="Osstivia product" style="height:280px;object-fit:contain;border-radius:.75rem;opacity:.85;" />
-  </div>
 </section>
 
 <!-- NETWORK GRAPH -->
@@ -477,8 +473,8 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
       </div>
     </div>
     <!-- Frontiers reference image -->
-    <div class="reveal" style="margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">
-      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+    <div class="reveal" style="margin-top:2rem;display:flex;justify-content:center;">
+      <div class="gallery-item" style="max-width:480px;width:100%;" onclick="openLightbox(this.querySelector('img').src)">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/https___www.frontiersin.org_files_Articles_1330732_xml-images_fphar-15-1330732-g001_1.webp?v=1783411025" alt="FLL phytochemistry overview" loading="lazy">
         <div class="gallery-caption">Frontiers in Pharmacology 2024: FLL phytochemistry, pharmacology, and bioavailability overview diagram</div>
       </div>
@@ -560,24 +556,24 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
         <div class="gallery-caption">Calcium absorption and retention rates significantly increased in dose-dependent manner (p less than 0.01)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.25s;">
-        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_7.png?v=1783411025" alt="Growth plate cartilage" loading="lazy">
-        <div class="gallery-caption">Epiphyseal growth plate cartilage thickness increased by approximately 24% to 32% vs aging controls</div>
+        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_7.png?v=1783411025" alt="FLL 3D microCT bone reconstruction" loading="lazy">
+        <div class="gallery-caption">FLL 3D microCT: dose-dependent improvement in trabecular bone architecture — BV/TV, trabecular number, and trabecular thickness (Normal / Aging / Aging+FLL groups)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.30s;">
-        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_8.png?v=1783411026" alt="GO term enrichment" loading="lazy">
-        <div class="gallery-caption">GO term enrichment: cellular response to growth factor stimulus (GO:0071363) top enriched biological process</div>
+        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_8.png?v=1783411026" alt="FLL bone immunohistochemistry" loading="lazy">
+        <div class="gallery-caption">FLL bone immunohistochemistry: DAB staining of protein expression in Normal, Aging, and FLL-treated bone tissue sections (10× and 40× magnification)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.35s;">
-        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_9.png?v=1783411025" alt="Condylar cartilage" loading="lazy">
-        <div class="gallery-caption">Histological cross-sections of condylar cartilage: increased hypertrophic zone thickness, enhanced endochondral ossification</div>
+        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_9.png?v=1783411025" alt="FLL neuroprotection pathway" loading="lazy">
+        <div class="gallery-caption">FLL neuroprotective mechanism: gut flora dysbiosis → FMO3 → TMAO → oxidative stress → Sirt6 downregulation → NF-κB-p65 activation → cognitive deficit, reversed by FLL</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.40s;">
-        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_10.png?v=1783411026" alt="NF-kB immunostaining" loading="lazy">
-        <div class="gallery-caption">NF-kB p65 and Cathepsin K immunostaining: FLL reduces NF-kB nuclear translocation and Cathepsin K expression</div>
+        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_10.png?v=1783411026" alt="FLL comprehensive mechanistic network" loading="lazy">
+        <div class="gallery-caption">FLL comprehensive mechanistic network: multi-pathway map of FLL's effects on bone remodeling, calcium homeostasis, Sirt6/NF-κB signaling, and antioxidant defense</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.45s;">
-        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_11.png?v=1783411026" alt="3D microCT" loading="lazy">
-        <div class="gallery-caption">3D microCT reconstructions: FLL-treated bone shows superior trabecular architecture and higher load-to-failure</div>
+        <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_11.png?v=1783411026" alt="FLL bone immunostaining panel" loading="lazy">
+        <div class="gallery-caption">FLL immunostaining panel: Sirt6, NF-κB p65, and Cathepsin K protein expression in osteoclasts confirms FLL-mediated suppression of bone resorption</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.50s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_12.png?v=1783411026" alt="Sirt6 immunostaining" loading="lazy">
@@ -863,11 +859,6 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
         <div class="card reveal" style="padding:1.75rem;animation-delay:.12s;">
           <h4 style="font-size:1rem;font-weight:800;color:var(--fg);margin-bottom:.75rem;">Taste Profile</h4>
           <p style="font-size:.75rem;font-family:'Space Mono',monospace;color:var(--muted);line-height:1.6;">This is an advanced formulated product. It does not taste sugary or artificial. Some users are sensitive to the excipients, while others don't mind. It is an acquired taste you will get used to.</p>
-        </div>
-        <!-- Product photos -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
-          <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/IMG_0608.jpg?v=1783411025" alt="Osstivia product" style="width:100%;border-radius:.75rem;border:1px solid var(--border);object-fit:cover;aspect-ratio:1;cursor:pointer;" onclick="openLightbox(this.src)" loading="lazy">
-          <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/IMG_1503.jpg?v=1783411025" alt="Osstivia product" style="width:100%;border-radius:.75rem;border:1px solid var(--border);object-fit:cover;aspect-ratio:1;cursor:pointer;" onclick="openLightbox(this.src)" loading="lazy">
         </div>
       </div>
     </div>
@@ -1337,8 +1328,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     { src: S + 'IMG_0608.jpg?v=1783411025',                          label: 'GO Biological Process Enrichment: FLL Osteoblast & Ossification Pathways' },
     { src: S + 'IMG_1503.jpg?v=1783411025',                          label: 'GO Molecular Function Enrichment: FLL Kinase, Receptor & Transcription Targets' },
     { src: S + 'IMG_1502.jpg?v=1783411025',                          label: 'GO Cellular Component Enrichment: FLL Nuclear Matrix & Chromatin Locations' },
-    { src: S + 'image_10.png?v=1783411026',                          label: 'NF-kB p65 and Cathepsin K Immunostaining' },
-    { src: S + 'image_11.png?v=1783411026',                          label: '3D microCT Bone Reconstruction' },
+    { src: S + 'image_10.png?v=1783411026',                          label: 'FLL Comprehensive Mechanistic Network: Sirt6/NF-κB/Cathepsin K Multi-Pathway Map' },
+    { src: S + 'image_11.png?v=1783411026',                          label: 'FLL Bone Immunostaining: Sirt6, NF-κB p65 & Cathepsin K Protein Expression in Osteoclasts' },
     { src: S + 'image_12.png?v=1783411026',                          label: 'Sirt6 Immunostaining: FLL/Sirt6/NF-kB Axis' },
     { src: S + 'image_13.png?v=1783411025',                          label: 'FLL, Sirt6, NF-kB, Cathepsin K Cascade' },
     { src: S + 'image_14.png?v=1783411025',                          label: 'Morris Water Maze: FLL Neuroprotection' },
@@ -1351,11 +1342,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     { src: S + 'FLLClinicalStudy3.png?v=1781936649',                 label: 'Clinical Trial: Biochemical Markers' },
     { src: S + 'FLLClinicalStudy4.png?v=1781936649',                 label: 'Clinical Trial Conclusion' },
     { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883', label: 'FLL Anti-Osteoporosis Research: Study Graphical Abstract' },
-    { src: S + 'SNEDDSResearch4.jpg?v=1781479883',                   label: 'SNEDDS Research: Lipid Nano-Droplet Formation' },
-    { src: S + 'SNEDDSResearch.jpg?v=1781479852',                    label: 'SNEDDS Research: Oral Bioavailability Enhancement' },
-    { src: S + 'SNEDDSResearch3.jpg?v=1781479850',                   label: 'SNEDDS Research: Pharmacokinetic Profile Data' },
-    { src: S + 'SNEDDSResearch2.jpg?v=1781479850',                   label: 'SNEDDS Research: Formulation & Nano-Characterization' },
-    { src: S + '1-s2.0-S0378517311001827-fx1.jpg?v=1783411863',      label: 'SNEDDS Pharmaceutical Research: Graphical Abstract' },
+    { src: S + 'Screenshot_20241111_082328_Drive-1_1.jpg?v=1783465067', label: 'Post-Pubertal Mandibular Condyle: Hypertrophic Growth Cartilage and 3D Remodeling Beyond Puberty' },
+    { src: S + 'Screenshot_20241111_082846_Drive-1_1.jpg?v=1783465067', label: 'Mandibular Condylar Growth Post-Puberty: Genuine 3D Remodeling and Growth Potential Confirmed' },
   ];
 
   let cfActive = 0;
