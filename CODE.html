@@ -44,15 +44,15 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 
 /* Hero gradient text */
 .hero-title-1 { 
-  font-size: clamp(44px, 9vw, 128px);
-  font-weight: 900;
+  font-size: clamp(44px, 9vw, 128px) !important;
+  font-weight: 900 !important;
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--fg);
 }
 .hero-title-2 {
-  font-size: clamp(36px, 7.5vw, 112px);
-  font-weight: 900;
+  font-size: clamp(36px, 7.5vw, 112px) !important;
+  font-weight: 900 !important;
   letter-spacing: -0.03em;
   line-height: 1;
   background: linear-gradient(90deg, var(--gold), var(--amber), var(--gold));
@@ -67,8 +67,8 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 
 /* Section utils */
 .section-label { font-size: 11px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color: var(--primary); font-family:'Space Mono',monospace; }
-.section-h { font-size: clamp(28px, 5vw, 64px); font-weight:900; letter-spacing:-.03em; line-height:1.05; }
-.section-sub { font-size: clamp(15px, 1.5vw, 20px); color: var(--muted); line-height:1.7; }
+.section-h { font-size: clamp(28px, 5vw, 64px) !important; font-weight:900 !important; letter-spacing:-.03em; line-height:1.05; }
+.section-sub { font-size: clamp(15px, 1.5vw, 20px) !important; color: var(--muted); line-height:1.7; }
 
 /* Cards */
 .card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; }
@@ -162,17 +162,19 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 
 /* Responsive */
 @media (max-width:768px) {
-  .hero-title-1 { font-size: clamp(38px, 12vw, 64px); }
-  .hero-title-2 { font-size: clamp(30px, 10vw, 52px); }
+  .hero-title-1 { font-size: clamp(38px, 12vw, 64px) !important; }
+  .hero-title-2 { font-size: clamp(30px, 10vw, 52px) !important; }
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap:.75rem; }
   .dose-table th, .dose-table td { padding:.5rem .75rem; }
-  .section-h { font-size: clamp(24px, 8vw, 42px); }
-  .section-sub { font-size: 15px; }
+  .section-h { font-size: clamp(24px, 8vw, 42px) !important; }
+  .section-sub { font-size: 15px !important; }
   #network { height:65dvh !important; }
   #graph-controls { top:8px !important; left:8px !important; right:8px !important; max-width:none !important; padding:.5rem .7rem !important; }
   #graph-controls > div:first-child { font-size:.85rem !important; }
   #zoom-hint { font-size:.55rem; padding:.25rem .7rem; bottom:8px; }
   .coverflow-wrap { height:360px !important; }
+  #filter-toggle { display:block !important; }
+  #cat-filters.collapsed { display:none !important; }
 }
 </style>
 </head>
@@ -229,8 +231,8 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
     <div class="reveal animate-fadeup" style="margin-bottom:1.5rem;">
       <span style="font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;font-family:'Space Mono',monospace;color:var(--primary);">OssiaLabs, Science Division</span>
     </div>
-    <h1 class="reveal hero-title-1" style="animation-delay:.1s;">PRECISION</h1>
-    <h1 class="reveal hero-title-2" style="animation-delay:.18s;">BONE MODULATION</h1>
+    <h1 class="reveal hero-title-1" style="animation-delay:.1s;font-size:clamp(44px,9vw,128px)!important;">PRECISION</h1>
+    <h1 class="reveal hero-title-2" style="animation-delay:.18s;font-size:clamp(36px,7.5vw,112px)!important;">BONE MODULATION</h1>
     <p class="reveal" style="animation-delay:.3s;margin-top:2rem;font-size:clamp(1rem,2.5vw,1.25rem);color:var(--muted);max-width:640px;margin-left:auto;margin-right:auto;line-height:1.7;font-family:'Space Mono',monospace;">
       Where ancient botanical medicine meets modern nanomedicine. Fructus Ligustri Lucidi engineered to boost the body's response to mechanical stimulation.
     </p>
@@ -264,7 +266,10 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
   <div id="graph-controls">
     <div style="font-size:1.1rem;font-weight:900;color:#fff;letter-spacing:-.02em;margin-bottom:.3rem;">PATHWAY NETWORK</div>
     <div style="font-size:.65rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.5);margin-bottom:.8rem;">Click nodes for mechanism detail</div>
-    <div style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.4rem;">Filter</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;">
+      <div style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);">Filter</div>
+      <button id="filter-toggle" onclick="var f=document.getElementById('cat-filters');f.classList.toggle('collapsed');this.textContent=f.classList.contains('collapsed')?'▼ show':'▲ hide';" style="display:none;background:none;border:none;color:rgba(255,255,255,.45);font-size:.6rem;font-family:'Space Mono',monospace;cursor:pointer;padding:0 .2rem;">▲ hide</button>
+    </div>
     <div id="cat-filters"></div>
   </div>
   <div id="zoom-hint">Ctrl + scroll to zoom &nbsp; Click nodes to explore</div>
@@ -335,11 +340,11 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.28s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/1-s2.0-S0378517311001827-fx1.jpg?v=1783411863" alt="SNEDDS mechanism graphical abstract" loading="lazy">
-        <div class="gallery-caption">SNEDDS oral absorption graphical abstract: lymphatic uptake of lipid-encapsulated actives via chylomicron packaging in enterocytes, bypassing hepatic first-pass metabolism with pharmacokinetic enhancement data</div>
+        <div class="gallery-caption">Self-double-emulsifying nanoparticle structure: oil core and water phases stabilized by hydrophilic and lipophilic emulsifier shells — upon GI contact, SNEDDS spontaneously forms nano-droplets improving intestinal permeation of lipophilic FLL compounds</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.35s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883" alt="FLL graphical abstract" loading="lazy">
-        <div class="gallery-caption">FLL comprehensive mechanism graphical abstract: simultaneous activation of OPG/RANKL bone remodeling, calcium absorption via VDR/CaSR axis, Nrf2/HO-1 antioxidant defense, and gut microbiota modulation</div>
+        <div class="gallery-caption">Free drug vs SNEDDS intestinal absorption comparison: conventional oral capsule disperses poorly above the mucosal barrier (low bioavailability) versus SNEDDS lipid nano-droplets that efficiently penetrate intestinal epithelium for significantly enhanced systemic absorption</div>
       </div>
     </div>
   </div>
@@ -537,67 +542,67 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
     <div class="gallery-grid">
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_2.png?v=1783411025" alt="FLL mechanism overview" loading="lazy">
-        <div class="gallery-caption">FLL mechanism: bone remodeling, calcium homeostasis, BMSCs differentiation, Nox4/ROS/NF-kB regulation</div>
+        <div class="gallery-caption">FLL multi-pathway mechanism: three convergent axes — (1) PTH/CaSR/VDR calcium regulation, (2) ERα/RANKL/OPG/MAPK/Akt osteoclast suppression, (3) Nox4/ROS/NF-κB antioxidant control — inhibiting osteoclastogenesis and promoting osteoblastogenesis</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.05s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_3.png?v=1783411025" alt="Anti-osteoporosis pathway" loading="lazy">
-        <div class="gallery-caption">Anti-osteoporosis pathway: NFATc1/OPG/RANK suppression, Wnt/beta-cat/Cbfa1 activation</div>
+        <div class="gallery-caption">FLL bioactive compound library: 14 pharmacologically active molecules — triterpenoids (oleanolic acid, ursolic acid), iridoid glycosides (nuzhenide through oleoside esters), phenylethanoid glycoside (salidroside), and phenols (hydroxytyrosol, tyrosol, tyrosyl acetate)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.10s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_4.png?v=1783411025" alt="PTH/CaSR/ERa pathway" loading="lazy">
-        <div class="gallery-caption">PTH/CaSR/ERa regulatory cascade: inhibiting osteoclastogenesis, promoting osteoblastogenesis</div>
+        <div class="gallery-caption">Morris water maze: FLL restores spatial memory and learning in aging mice — significantly more platform crossings, greater target zone dwell time, and reduced escape latency vs. aging controls (swim paths and bar charts, Normal/Aging/VE/FLL groups)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.15s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_5.png?v=1783411025" alt="microCT bone imaging" loading="lazy">
-        <div class="gallery-caption">microCT bone microarchitecture: significant dose-dependent BMD improvement documented</div>
+        <div class="gallery-caption">FLL articular cartilage protection: H&amp;E (10×) and Safranin-O/glycosaminoglycan staining (10× &amp; 20×) showing FLL preserves cartilage proteoglycan matrix in aging — IOD values quantified across Normal/Aging/VE/FLL groups</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.20s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_6.png?v=1783411025" alt="Calcium absorption rates" loading="lazy">
-        <div class="gallery-caption">Calcium absorption and retention rates significantly increased in dose-dependent manner (p less than 0.01)</div>
+        <div class="gallery-caption">FLL suppresses NF-κB p65 acetylation and Cathepsin K in aging bone: IHC (20×/40×) and western blot showing FLL reduces Acetyl-NF-κB-p65 (Lys310) and Cathepsin K protein in osteoclast-rich bone tissue (Normal/Aging/Aging+FLL)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.25s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_7.png?v=1783411025" alt="FLL 3D microCT bone reconstruction" loading="lazy">
-        <div class="gallery-caption">FLL 3D microCT: dose-dependent improvement in trabecular bone architecture — BV/TV, trabecular number, and trabecular thickness (Normal / Aging / Aging+FLL groups)</div>
+        <div class="gallery-caption">FLL 3D microCT and biomechanics: 3D bone reconstruction with dose-dependent improvements in trabecular parameters (BV/TV, Tb.N, Tb.Sp, Tb.Th) and cortical metrics (Ct.Ar, Ct.Th), plus whole-bone mechanical strength (ultimate load, bending strength, elastic modulus)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.30s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_8.png?v=1783411026" alt="FLL bone immunohistochemistry" loading="lazy">
-        <div class="gallery-caption">FLL bone immunohistochemistry: DAB staining of protein expression in Normal, Aging, and FLL-treated bone tissue sections (10× and 40× magnification)</div>
+        <div class="gallery-caption">FLL upregulates Sirt6 in brain neurons and bone tissue: DAB immunostaining in hippocampal neurons (top panels) and osteoblasts (bottom panels), confirmed by western blot; FLL also restores serum IL-2 and reduces TNF-α in aging (Normal/Aging/Aging+FLL)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.35s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_9.png?v=1783411025" alt="FLL neuroprotection pathway" loading="lazy">
-        <div class="gallery-caption">FLL neuroprotective mechanism: gut flora dysbiosis → FMO3 → TMAO → oxidative stress → Sirt6 downregulation → NF-κB-p65 activation → cognitive deficit, reversed by FLL</div>
+        <div class="gallery-caption">FLL dual mechanism pathway diagram: D-gal+NaNO2 induces gut flora dysbiosis → FMO3 → TMAO → oxidative stress; FLL blocks this via Sirt6 upregulation → NF-κB-p65 suppression → Cathepsin K reduction, protecting both bone (↓senile osteoporosis) and brain (↓cognitive deficit)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.40s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_10.png?v=1783411026" alt="FLL comprehensive mechanistic network" loading="lazy">
-        <div class="gallery-caption">FLL comprehensive mechanistic network: multi-pathway map of FLL's effects on bone remodeling, calcium homeostasis, Sirt6/NF-κB signaling, and antioxidant defense</div>
+        <div class="gallery-caption">Ursolic acid (FLL triterpenoid) macrophage mechanism: inhibits LPS/TLR-4 → M1 macrophage activation, balances M1/M2 polarization, induces autophagy — systemic protection of brain (Alzheimer/depression/ischemia), bone (osteoporosis), blood vessels (atherosclerosis), liver, and skin</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.45s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_11.png?v=1783411026" alt="FLL bone immunostaining panel" loading="lazy">
-        <div class="gallery-caption">FLL immunostaining panel: Sirt6, NF-κB p65, and Cathepsin K protein expression in osteoclasts confirms FLL-mediated suppression of bone resorption</div>
+        <div class="gallery-caption">Ursolic acid immunological network: macrophage M1/M2 polarization balance (TNF-α/IL-6 → IL-10/TGF-β), LPS/TLR-4/NF-κB/pSTAT1/MAPK suppression, autophagy induction — mechanistic links to osteoporosis (osteoclast MAPK/JNK), Alzheimer/depression, liver fibrosis, atherosclerosis</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.50s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_12.png?v=1783411026" alt="Sirt6 immunostaining" loading="lazy">
-        <div class="gallery-caption">Sirt6 immunostaining: FLL upregulates Sirt6 in osteoblasts and reduces it in osteoclasts, establishing the FLL, Sirt6, NF-kB, Cathepsin K axis</div>
+        <div class="gallery-caption">Ursolic acid multi-organ body map: brain (Alzheimer/neuritis via ROS/NF-κB/NLRP3 in microglia), bone (osteoporosis via JNK/MAPK/TLR/NF-κB osteoclast differentiation), blood vessels (atherosclerosis via NOX4/NF-κB), liver (fibrosis via Kupffer/NLRP3 pyroptosis), skin (wound healing)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.55s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_13.png?v=1783411025" alt="FLL pathway cascade" loading="lazy">
-        <div class="gallery-caption">FLL, Sirt6, NF-kB, Cathepsin K, osteoporosis suppression: complete mechanistic cascade</div>
+        <div class="gallery-caption">Ursolic acid five-organ radial effects: bone (inhibit osteoclast differentiation), skin (inflammation regulation, wound healing), blood vessels (autophagy promotion, foam cell restriction), brain (neuroinflammatory regulation, neuroprotection), liver (fibrosis regulation, immune surveillance)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.60s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_14.png?v=1783411025" alt="Morris water maze" loading="lazy">
-        <div class="gallery-caption">Morris water maze: FLL neuroprotection (via salidroside/AMPK) preserves spatial memory and learning capacity</div>
+        <div class="gallery-caption">Ursolic acid broad pharmacological profile: 11 documented bioactivities — antifungal, antimalarial, antihistaminic, cardioprotective, anti-inflammatory, anticancer, antioxidant, antidiabetic, antibacterial, antiproliferative, and chemopreventive</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.65s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_15.png?v=1783411025" alt="GO molecular function" loading="lazy">
-        <div class="gallery-caption">GO Molecular Function enrichment: protein kinase activity, metalloendopeptidase activity (GO:0004222), transcription regulatory region DNA binding</div>
+        <div class="gallery-caption">Ligustrum lucidum Fruit (LLF) comprehensive mechanism: four simultaneous actions — bone remodeling balance (inhibit osteoclastogenesis, promote osteoblast activity), calcium homeostasis (CaSR/PTH axis), Nox4/ROS/NF-κB antioxidant suppression, and BMSCs differentiation (inhibit adipogenesis, promote osteogenesis)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.70s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_16.png?v=1783411025" alt="GO cellular component" loading="lazy">
-        <div class="gallery-caption">GO Cellular Component enrichment: transcriptionally active chromatin, ER lumen, cytoplasmic vesicle lumen</div>
+        <div class="gallery-caption">Ligustrum lucidum multi-system pharmacology: anti-inflammatory (NF-κB/MAPK/HO-1), anti-tumor (casp-3/8/9 apoptosis, PI3K/Akt/MMP2 migration), anti-osteoporosis (NFATc1/ERK osteoclasts + Wnt/β-cat/BMP osteoblasts), hepatoprotection (LXR-α/SREBP/Smad4), antioxidant (NOx4/SOD/GSH-Px), anti-depression (CaSR/TLR4/NLRP3)</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.75s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/image_17.png?v=1783411025" alt="GO biological process" loading="lazy">
-        <div class="gallery-caption">GO Biological Process: regulation of osteoblast differentiation (GO:0045667), positive regulation of ossification, positive regulation of calcium ion import (GO:0090280)</div>
+        <div class="gallery-caption">FLL calcium homeostasis mechanism: kidney activation of 1,25(OH)₂D₃ → intestinal TRPV6/CaBP-9K/VDR transporter upregulation, plus gut microbiota short-chain fatty acids (SCFAs) → combined enhanced intestinal Ca²⁺ absorption → net bone calcium deposition</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.80s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/BMRI2015-281873.001.jpg?v=1783411025" alt="FLL triterpene molecular structure" loading="lazy">
@@ -605,7 +610,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.85s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/BMRI2015-281873.002.jpg?v=1783411025" alt="FLL bioactive saponin and glycoside structures" loading="lazy">
-        <div class="gallery-caption">FLL Bioactive Compounds: Saponin & Glycoside Structures</div>
+        <div class="gallery-caption">FLL iridoid glycoside structures: oleoside-type iridoid variants (compounds 1–5), including salidroside-type ester (R = 4-hydroxyphenethyl) and phenylalanine ester variants — key bioactive glycoside scaffolds in Ligustrum lucidum Fruit</div>
       </div>
     </div>
   </div>
@@ -664,11 +669,11 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/FLLClinicalStudy.png?v=1781936649" alt="Clinical Study 1" loading="lazy">
-        <div class="gallery-caption">Leung et al. 2015: FLL milk supplement clinical trial design and participant characteristics</div>
+        <div class="gallery-caption">Leung et al. 2015 clinical conclusion: rich laboratory evidence and positive clinical observations establish FLL as a safe, effective nutritional supplement for bone health — recommended as a perfect choice for bone mineral density maintenance</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.08s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/FLLClinicalStudy2.png?v=1781936649" alt="Clinical Study 2" loading="lazy">
-        <div class="gallery-caption">Bone mineral density measurements across dosage groups: dose-dependent improvement demonstrated</div>
+        <div class="gallery-caption">Leung et al. 2015 clinical trial: &gt;0.5% increase in both hip and spine BMD after 3 months of FLL supplementation — statistically significant vs. control group, zero adverse events, no body weight gain</div>
       </div>
       <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)" style="animation-delay:.16s;">
         <img src="https://cdn.shopify.com/s/files/1/0769/4362/2362/files/FLLClinicalStudy3.png?v=1781936649" alt="Clinical Study 3" loading="lazy">
@@ -1301,41 +1306,40 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     { src: S + 'Screenshot_20251230_153046_Chrome.jpg?v=1783411025',  label: 'FLL Preclinical Study: Femoral BMD & Bone Architecture by Dose' },
     { src: S + 'Screenshot_20251230_153105_Chrome.jpg?v=1783411025',  label: 'Ca Absorption & Retention Rate: Dose-Response' },
     { src: S + 'Screenshot_20251230_153122_Chrome.jpg?v=1783411025',  label: 'Renal 1-OHase mRNA Upregulation (Vitamin D Axis)' },
-    { src: S + 'Screenshot_20251230_155204_Chrome.jpg?v=1783411025',  label: 'Wnt/beta-catenin: DKK1 & SOST Inhibition Research' },
-    { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',  label: 'FLL Bioactive Compound Molecular Structure' },
-    { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',  label: 'FLL Bone Quality Improvement: Clinical Evidence' },
+    { src: S + 'Screenshot_20251230_155204_Chrome.jpg?v=1783411025',  label: 'FLL Bone Turnover: OCN (formation) Increase, CTX-I (resorption) Decrease, Ca Absorption via VDR/1α-hydroxylase/calbindin-D9k Upregulation' },
+    { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',  label: 'FLL Wnt/β-catenin Activation: DKK1 and SOST Inhibition Promotes Osteoblastic Bone Formation — Salidroside Identified as Primary Active Ingredient' },
+    { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',  label: 'FLL Study Conclusion: Canonical Wnt/β-catenin Induction via DKK1/SOST Inhibition Preserves Bone Quality' },
     { src: S + 'BMRI2015-281873.001.jpg?v=1783411025',               label: 'FLL Triterpene Structure: Oleanolic Acid Molecular Formula' },
     { src: S + 'BMRI2015-281873.002.jpg?v=1783411025',               label: 'FLL Bioactive Compounds: Saponin & Glycoside Structures' },
-    { src: S + 'Screenshot_20251230_234143_Chrome.jpg?v=1783411025', label: 'Sirt6/NF-kB Axis Research' },
-    { src: S + 'Screenshot_20251230_233830_Chrome.jpg?v=1783411024', label: 'Gut Microbiota Regulation' },
-    { src: S + 'Screenshot_20251230_235137_Chrome.jpg?v=1783411025', label: 'Nrf2/HO-1 Antioxidant Pathway' },
-    { src: S + 'Screenshot_20260107_074245_Chrome.jpg?v=1783411025', label: 'GO Enrichment Analysis' },
-    { src: S + 'image_2.png?v=1783411025',                           label: 'FLL Bone Remodeling Mechanism Overview' },
-    { src: S + 'image_3.png?v=1783411025',                           label: 'Anti-Osteoporosis Pathway: NFATc1/OPG/Wnt' },
+    { src: S + 'Screenshot_20251230_234143_Chrome.jpg?v=1783411025', label: 'FLL Dose-Dependent BMD Improvement: Increases Bone Mineral Density and Mechanical Properties via Elevated Ca Absorption/Retention and RANKL/OPG Modulation (Ying Lyu Review)' },
+    { src: S + 'Screenshot_20251230_233830_Chrome.jpg?v=1783411024', label: 'FLL Osteogenesis Promotion: Improves Bone Microstructure (BMD, BV/TV, Calcium Retention) and Enhances Osteoblast Proliferation and OPG Expression' },
+    { src: S + 'Screenshot_20251230_235137_Chrome.jpg?v=1783411025', label: 'FLL In Vitro Mineralization: FLL Extracts Accelerate Calcified Matrix Formation and Increase Extracellular Ca/P Deposition in Osteoblasts (Time- and Dose-Dependent)' },
+    { src: S + 'Screenshot_20260107_074245_Chrome.jpg?v=1783411025', label: 'FLL Epiphyseal Growth Plate Restoration: Safranin O Histology Shows FLL Increases Growth Plate Cartilage Thickness by ~24% in Aging Mice (p < 0.05)' },
+    { src: S + 'image_2.png?v=1783411025',                           label: 'FLL Multi-Pathway Mechanism: PTH/CaSR/VDR Calcium Regulation, ERα/RANKL/OPG/MAPK Osteoclast Suppression, Nox4/ROS/NF-κB Antioxidant Control' },
+    { src: S + 'image_3.png?v=1783411025',                           label: 'FLL 14 Bioactive Compounds: Triterpenoids (Oleanolic Acid, Ursolic Acid), Iridoid Glycosides (Nuzhenide through Oleoside Esters), Salidroside, Phenols' },
     { src: S + 'IMG_9200.jpg?v=1783411025',                          label: 'FLL + Exercise: Trabecular Bone Spacing, Number & Histology' },
-    { src: S + 'image_4.png?v=1783411025',                           label: 'PTH/CaSR/ERa Regulatory Cascade' },
-    { src: S + 'image_5.png?v=1783411025',                           label: 'microCT Bone Microarchitecture' },
-    { src: S + 'image_6.png?v=1783411025',                           label: 'Calcium Absorption and Retention' },
-    { src: S + 'image_7.png?v=1783411025',                           label: 'FLL 3D microCT: Bone Architecture & Trabecular Parameter Analysis' },
-    { src: S + 'image_8.png?v=1783411026',                           label: 'FLL Bone IHC: Protein Expression in Normal, Aging & Treated Bone' },
-    { src: S + 'image_9.png?v=1783411025',                           label: 'FLL Neuroprotection: Gut Flora → Oxidative Stress → Sirt6/NF-κB Pathway' },
+    { src: S + 'image_4.png?v=1783411025',                           label: 'Morris Water Maze: FLL Restores Spatial Memory and Learning in Aging Mice — Improved Platform Crossings, Target Zone Dwell Time, and Escape Latency' },
+    { src: S + 'image_5.png?v=1783411025',                           label: 'FLL Articular Cartilage: H&E and Safranin-O Histology Showing FLL Preserves Cartilage Proteoglycan Matrix — IOD Values Across Normal/Aging/VE/FLL Groups' },
+    { src: S + 'image_6.png?v=1783411025',                           label: 'FLL Suppresses NF-κB p65 and Cathepsin K: IHC and Western Blot Confirm Reduced Acetyl-NF-κB-p65 and Cathepsin K in Aging Bone' },
+    { src: S + 'image_7.png?v=1783411025',                           label: 'FLL 3D microCT and Biomechanics: Trabecular Parameters (BV/TV, Tb.N, Tb.Sp, Tb.Th), Cortical Metrics (Ct.Ar, Ct.Th), and Bone Mechanical Strength' },
+    { src: S + 'image_8.png?v=1783411026',                           label: 'FLL Sirt6 Upregulation: IHC in Hippocampal Neurons and Osteoblasts + Serum IL-2 Restoration and TNF-α Reduction (Normal/Aging/Aging+FLL)' },
+    { src: S + 'image_9.png?v=1783411025',                           label: 'FLL Dual Mechanism: Gut Flora Dysbiosis → TMAO → Oxidative Stress Blocked by Sirt6↑ → NF-κB-p65↓ → Cathepsin K↓, Protecting Bone and Brain' },
     { src: S + 'IMG_0608.jpg?v=1783411025',                          label: 'GO Biological Process Enrichment: FLL Osteoblast & Ossification Pathways' },
     { src: S + 'IMG_1503.jpg?v=1783411025',                          label: 'GO Molecular Function Enrichment: FLL Kinase, Receptor & Transcription Targets' },
     { src: S + 'IMG_1502.jpg?v=1783411025',                          label: 'GO Cellular Component Enrichment: FLL Nuclear Matrix & Chromatin Locations' },
-    { src: S + 'image_10.png?v=1783411026',                          label: 'FLL Comprehensive Mechanistic Network: Sirt6/NF-κB/Cathepsin K Multi-Pathway Map' },
-    { src: S + 'image_11.png?v=1783411026',                          label: 'FLL Bone Immunostaining: Sirt6, NF-κB p65 & Cathepsin K Protein Expression in Osteoclasts' },
-    { src: S + 'image_12.png?v=1783411026',                          label: 'Sirt6 Immunostaining: FLL/Sirt6/NF-kB Axis' },
-    { src: S + 'image_13.png?v=1783411025',                          label: 'FLL, Sirt6, NF-kB, Cathepsin K Cascade' },
-    { src: S + 'image_14.png?v=1783411025',                          label: 'Morris Water Maze: FLL Neuroprotection' },
-    { src: S + 'image_15.png?v=1783411025',                          label: 'GO Molecular Function Enrichment' },
+    { src: S + 'image_10.png?v=1783411026',                          label: 'Ursolic Acid Macrophage Mechanism: LPS/TLR-4/M1 Inhibition, M1/M2 Polarization Balance, Autophagy — Brain/Bone/Liver/Skin Systemic Protection' },
+    { src: S + 'image_11.png?v=1783411026',                          label: 'Ursolic Acid Immunological Network: M1/M2 Polarization, NF-κB/pSTAT1/MAPK Suppression, Autophagy — Links to Osteoporosis, Alzheimer, Liver Fibrosis, Atherosclerosis' },
+    { src: S + 'image_12.png?v=1783411026',                          label: 'Ursolic Acid Multi-Organ Body Map: Brain (ROS/NF-κB/NLRP3), Bone (JNK/MAPK/TLR/NF-κB Osteoclast), Blood Vessels (NOX4), Liver (NLRP3 Pyroptosis), Skin' },
+    { src: S + 'image_13.png?v=1783411025',                          label: 'Ursolic Acid Five-Organ Radial Effects: Bone (Osteoclast Inhibition), Skin (Wound Healing), Vessels (Autophagy/Foam Cells), Brain (Neuroprotection), Liver (Fibrosis)' },
+    { src: S + 'image_14.png?v=1783411025',                          label: 'Ursolic Acid 11 Pharmacological Activities: Antifungal, Antimalarial, Antihistaminic, Cardioprotective, Anti-Inflammatory, Anticancer, Antioxidant, Antidiabetic, Antibacterial' },
+    { src: S + 'image_15.png?v=1783411025',                          label: 'LLF Comprehensive Mechanism: Bone Remodeling Balance, CaSR/PTH Calcium Homeostasis, Nox4/ROS/NF-κB Antioxidant, BMSCs Osteogenesis Promotion' },
     { src: S + 'https___www.frontiersin.org_files_Articles_1330732_xml-images_fphar-15-1330732-g001_1.webp?v=1783411025', label: 'Frontiers Pharmacology: FLL Phytochemistry Overview' },
-    { src: S + 'image_16.png?v=1783411025',                          label: 'GO Cellular Component Enrichment' },
-    { src: S + 'image_17.png?v=1783411025',                          label: 'GO Biological Process Enrichment' },
-    { src: S + 'FLLClinicalStudy2.png?v=1781936649',                 label: 'Clinical Trial: BMD by Dosage Group' },
-    { src: S + 'FLLClinicalStudy.png?v=1781936649',                  label: 'Clinical Trial Design and Participants' },
+    { src: S + 'image_16.png?v=1783411025',                          label: 'Ligustrum lucidum Multi-System Pharmacology: Anti-Inflammatory, Anti-Tumor, Anti-Osteoporosis, Hepatoprotection, Antioxidant, Anti-Depression — Comprehensive Mechanism Diagram' },
+    { src: S + 'image_17.png?v=1783411025',                          label: 'FLL Calcium Homeostasis: Kidney 1,25(OH)₂D₃ + Gut Microbiota SCFAs → TRPV6/CaBP-9K/VDR Upregulation → Enhanced Intestinal Ca²⁺ Absorption → Bone Deposition' },
+    { src: S + 'FLLClinicalStudy2.png?v=1781936649',                 label: 'Clinical Trial Result: >0.5% BMD Increase in Hip and Spine at 3 Months, Zero Adverse Events — FLL Safe and Effective (Leung et al.)' },
+    { src: S + 'FLLClinicalStudy.png?v=1781936649',                  label: 'Leung et al. 2015 Clinical Conclusion: Laboratory and Clinical Evidence Establish FLL as a Safe, Effective Nutritional Supplement for Bone Health' },
     { src: S + 'FLLClinicalStudy3.png?v=1781936649',                 label: 'Clinical Trial: Biochemical Markers' },
     { src: S + 'FLLClinicalStudy4.png?v=1781936649',                 label: 'Clinical Trial Conclusion' },
-    { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883', label: 'FLL Anti-Osteoporosis Research: Study Graphical Abstract' },
   ];
 
   let cfActive = 0;
