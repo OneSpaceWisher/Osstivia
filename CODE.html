@@ -22,7 +22,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+body { background: #09090b !important; background-color: #09090b !important; color: var(--fg); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
 .mono { font-family: 'Space Mono', monospace; }
 
 /* Animations */
@@ -76,7 +76,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 .card-hover:hover { border-color: rgba(245,166,35,.35); box-shadow: 0 0 40px rgba(245,166,35,.08); }
 
 /* Graph canvas */
-#graph-canvas { display:block; cursor:crosshair; }
+#graph-canvas { display:block; cursor:crosshair; touch-action: none; }
 #graph-node-panel {
   position:absolute; top:0; right:0; height:100%; width:min(460px, 100%);
   background: rgba(10,10,12,0.97); backdrop-filter:blur(20px);
@@ -219,7 +219,7 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
 </div>
 
 <!-- HERO -->
-<section id="hero" style="min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 1.5rem 5rem;position:relative;overflow:hidden;">
+<section id="hero" style="min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 1.5rem 5rem;position:relative;overflow:hidden;background:#09090b;background-color:#09090b;">
   <!-- Animated background rings -->
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
     <div class="animate-spin-slow" style="position:absolute;width:min(700px,90vw);height:min(700px,90vw);border-radius:50%;border:1px solid rgba(245,166,35,.06);"></div>
@@ -282,6 +282,10 @@ body { background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sa
     <div id="panel-group" style="font-size:.65rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.4rem;"></div>
     <h3 id="panel-title" style="font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:1.25rem;letter-spacing:-.02em;line-height:1.2;"></h3>
     <p id="panel-desc" style="font-size:.82rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.68);line-height:1.7;"></p>
+    <div id="panel-img-wrap" style="display:none;margin-top:1rem;">
+      <img id="panel-image" style="width:100%;border-radius:.5rem;cursor:pointer;object-fit:contain;max-height:180px;" onclick="openLightbox(this.src)" alt="Research evidence">
+      <div id="panel-img-cap" style="font-size:.58rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.38);margin-top:.4rem;line-height:1.45;"></div>
+    </div>
     <div id="panel-strong" class="strong-badge" style="display:none;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <p style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--primary);line-height:1.5;">Strong evidence overlap with mandibular condylar remodeling literature.</p>
@@ -1233,6 +1237,34 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     }
   });
 
+  const nodeImages = {
+    'RANKL/RANK':  { src: S + 'image_2.png?v=1783411025',                                    cap: 'FLL multi-pathway suppression: ERα / RANKL / OPG / MAPK osteoclast cascade' },
+    'NFATc1':      { src: S + 'image_9.png?v=1783411025',                                    cap: 'FLL gut→TMAO→Sirt6/NF-κB pathway: NFATc1-driven osteoclastogenesis suppression' },
+    'c-Fos':       { src: S + 'image_11.png?v=1783411026',                                   cap: 'Ursolic acid immunological network: NF-κB/pSTAT1/MAPK suppression including c-Fos/AP-1' },
+    'TRAF6/NF-kB': { src: S + 'image_6.png?v=1783411025',                                    cap: 'FLL suppresses NF-κB p65 and Cathepsin K in aging bone (IHC + western blot)' },
+    'OPG/RANKL':   { src: S + 'image_2.png?v=1783411025',                                    cap: 'FLL shifts OPG/RANKL ratio toward bone formation across multiple mechanisms' },
+    'Cathepsin K':  { src: S + 'image_6.png?v=1783411025',                                   cap: 'FLL reduces Cathepsin K expression in aging bone tissue (IHC 20× + 40× magnification)' },
+    'Wnt/b-cat':   { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',           cap: 'FLL activates Wnt/β-catenin via DKK1 and SOST inhibition — salidroside as primary active ingredient' },
+    'RUNX2':       { src: S + 'image_15.png?v=1783411025',                                   cap: 'LLF comprehensive mechanism: BMSCs osteogenic differentiation with RUNX2 upregulation' },
+    'BMP/Smad':    { src: S + 'image_7.png?v=1783411025',                                    cap: 'FLL 3D microCT + biomechanics: BV/TV, Tb.N, Tb.Sp, Tb.Th, Ct.Ar all improved' },
+    'PI3K/Akt':    { src: S + 'image_16.png?v=1783411025',                                   cap: 'Ligustrum lucidum multi-system pharmacology including PI3K/Akt axis' },
+    'ALP':         { src: S + 'Screenshot_20251230_235137_Chrome.jpg?v=1783411025',           cap: 'FLL accelerates ALP activity and Ca/P matrix deposition in osteoblasts (dose-dependent)' },
+    'PTH/VDR':     { src: S + 'Screenshot_20251230_153122_Chrome.jpg?v=1783411025',           cap: 'Renal 1α-hydroxylase mRNA upregulation by FLL (Vitamin D axis dose-response)' },
+    'CaSR':        { src: S + 'image_17.png?v=1783411025',                                   cap: 'FLL calcium homeostasis: VDR + gut SCFAs → TRPV6/CaBP-9K → enhanced intestinal Ca²⁺ absorption' },
+    'Sirt6':       { src: S + 'image_8.png?v=1783411026',                                    cap: 'FLL upregulates Sirt6 in hippocampal neurons and osteoblasts (DAB IHC + western blot)' },
+    'Nox4/ROS':    { src: S + 'image_9.png?v=1783411025',                                    cap: 'FLL blocks gut dysbiosis → FMO3 → TMAO → Nox4/ROS oxidative stress in bone' },
+    'MAPK/Akt':    { src: S + 'image_10.png?v=1783411026',                                   cap: 'Ursolic acid inhibits LPS/TLR-4 → MAPK cascade in macrophages, reducing downstream NF-κB' },
+    'GO:0071363':  { src: S + 'IMG_0608.jpg?v=1783411025',                                   cap: 'GO enrichment: GO:0071363 cellular response to growth factor stimulus is a top FLL-enriched biological process' },
+    'Hard Chewing':{ src: S + 'Screenshot_20260107_074245_Chrome.jpg?v=1783411025',           cap: 'FLL increases epiphyseal growth plate thickness ~24% in aging mice (Safranin-O/Fast Green histology)' },
+    'Condylar C.': { src: S + 'IMG_9200.jpg?v=1783411025',                                   cap: 'FLL + Exercise: trabecular bone parameters (Tb.Ar, Tb.Sp, Tb.N, Tb.Th) + H&E histology' },
+    'Endo Oss.':   { src: S + 'IMG_9200.jpg?v=1783411025',                                   cap: 'FLL + Exercise: improved bone microstructure in endochondral ossification zones (H&E histology)' },
+    'Hyp. Zone':   { src: S + 'Screenshot_20260107_074245_Chrome.jpg?v=1783411025',           cap: 'Hypertrophic zone: FLL increases cartilage plate thickness ~24% in aging mice (p<0.05)' },
+    'SNEDDS':      { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883', cap: 'Free drug vs SNEDDS: lipid nano-droplets efficiently penetrate intestinal epithelium vs. poor conventional absorption' },
+    'Lymphatic':   { src: S + '1-s2.0-S0378517311001827-fx1.jpg?v=1783411863',               cap: 'SNEDDS nanoparticle structure: oil/water phases + emulsifier shells form nano-droplets for lymphatic uptake' },
+    'P-gp':        { src: S + '1-s2.0-S0378517311001827-fx1.jpg?v=1783411863',               cap: 'SNEDDS architecture: surfactant components inhibit P-gp efflux pump, maximising enterocyte permeation' },
+    'Bioavail.':   { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883', cap: 'SNEDDS vs free drug: superior systemic bioavailability through efficient intestinal epithelium penetration' },
+  };
+
   function showPanel(node) {
     const panel = document.getElementById('graph-node-panel');
     const cat   = CATEGORIES.find(c => c.id === node.group);
@@ -1241,6 +1273,15 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     document.getElementById('panel-group').textContent    = cat ? cat.name.toUpperCase() : 'NODE';
     document.getElementById('panel-title').textContent    = node.name;
     document.getElementById('panel-desc').textContent     = desc;
+    const imgData  = nodeImages[node.id];
+    const imgWrap  = document.getElementById('panel-img-wrap');
+    if (imgData) {
+      document.getElementById('panel-image').src = imgData.src;
+      document.getElementById('panel-img-cap').textContent = imgData.cap;
+      imgWrap.style.display = 'block';
+    } else {
+      imgWrap.style.display = 'none';
+    }
     const strongEl = document.getElementById('panel-strong');
     if (desc.includes('STRONG')) {
       strongEl.style.display = 'flex';
@@ -1277,27 +1318,91 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 
   // Mobile hint update
   if (isMob) {
-    document.getElementById('zoom-hint').textContent = 'Tap nodes to explore';
+    document.getElementById('zoom-hint').textContent = 'Tap nodes to explore  ·  pinch to zoom';
   }
 
-  // Touch click for mobile
-  canvas.addEventListener('touchend', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const t    = e.changedTouches[0];
-    const mx   = (t.clientX - rect.left - transform.x) / transform.k;
-    const my   = (t.clientY - rect.top  - transform.y) / transform.k;
-    for (const n of nodes) {
-      if (!n.x) continue;
-      const dx = n.x - mx, dy = n.y - my;
-      if (Math.sqrt(dx * dx + dy * dy) < nodeRadius(n) + 10) {
-        if (n.id === 'Center' || n.val >= 20) return;
-        activeNode = n;
-        showPanel(n);
-        draw();
-        return;
+  // ── Mobile touch: pan + pinch-zoom + tap ─────────────────────────────────
+  if (isMob) {
+    let touch = null; // stores gesture state
+
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      if (e.touches.length === 1) {
+        touch = {
+          type: 'pan',
+          startCX: e.touches[0].clientX,
+          startCY: e.touches[0].clientY,
+          startTX: transform.x,
+          startTY: transform.y,
+          startK:  transform.k,
+          moved:   false,
+        };
+      } else if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        const rect = canvas.getBoundingClientRect();
+        touch = {
+          type:     'pinch',
+          startDist: Math.sqrt(dx * dx + dy * dy),
+          pinchCX:  (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left,
+          pinchCY:  (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top,
+          startTX:  transform.x,
+          startTY:  transform.y,
+          startK:   transform.k,
+          moved:    true,
+        };
       }
-    }
-  }, { passive: true });
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (!touch) return;
+
+      if (e.touches.length === 1 && touch.type === 'pan') {
+        const dx = e.touches[0].clientX - touch.startCX;
+        const dy = e.touches[0].clientY - touch.startCY;
+        if (Math.abs(dx) > 4 || Math.abs(dy) > 4) touch.moved = true;
+        transform = { x: touch.startTX + dx, y: touch.startTY + dy, k: touch.startK };
+        draw();
+
+      } else if (e.touches.length === 2 && touch.type === 'pinch') {
+        const dx   = e.touches[0].clientX - e.touches[1].clientX;
+        const dy   = e.touches[0].clientY - e.touches[1].clientY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const newK = Math.max(0.25, Math.min(4, touch.startK * dist / touch.startDist));
+        // Zoom anchored at the initial pinch center
+        const pcx = touch.pinchCX;
+        const pcy = touch.pinchCY;
+        const cvX = (pcx - touch.startTX) / touch.startK;
+        const cvY = (pcy - touch.startTY) / touch.startK;
+        transform = { x: pcx - cvX * newK, y: pcy - cvY * newK, k: newK };
+        draw();
+      }
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', (e) => {
+      if (!touch) return;
+      // A non-moved single-finger touch is a tap → try node click
+      if (!touch.moved && touch.type === 'pan' && e.changedTouches.length === 1) {
+        const rect = canvas.getBoundingClientRect();
+        const t    = e.changedTouches[0];
+        const mx   = (t.clientX - rect.left - transform.x) / transform.k;
+        const my   = (t.clientY - rect.top  - transform.y) / transform.k;
+        for (const n of nodes) {
+          if (!n.x) continue;
+          const dx = n.x - mx, dy = n.y - my;
+          if (Math.sqrt(dx * dx + dy * dy) < nodeRadius(n) + 12) {
+            if (n.id === 'Center' || n.val >= 20) break;
+            activeNode = n;
+            showPanel(n);
+            draw();
+            break;
+          }
+        }
+      }
+      if (e.touches.length === 0) touch = null;
+    });
+  }
 })();
 
 // ─── Coverflow Carousel ─────────────────────────────────────────────────────
