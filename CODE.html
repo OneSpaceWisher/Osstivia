@@ -1155,7 +1155,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     'TRAF6/NF-kB': 'TRAF6 bridges RANK activation to downstream NF-kB and MAPK signaling. Upon RANKL binding, TRAF6 polyubiquitination activates IKK, phosphorylates IkBa, and enables NF-kB p65 nuclear translocation. NF-kB then drives NFATc1, Cathepsin K, IL-6. FLL suppresses TRAF6 expression in RAW264.7 cells (Xu et al. 2016). Sirt6 upregulation by FLL provides second-order NF-kB suppression via p65 deacetylation. Overlap grade: STRONG, central to osteoclastogenic signaling and bone degradation.',
     'OPG/RANKL':   'OPG (Osteoprotegerin) is a decoy receptor that competes with RANK for RANKL binding, inhibiting osteoclastogenesis. FLL significantly upregulates OPG/RANKL ratio in bone tissue. Higher OPG shifts the balance decisively toward bone formation.',
     'Cathepsin K':  'Cathepsin K is the primary protease secreted by osteoclasts to digest type I collagen. FLL ethanol extract suppressed MMP-9 in RANKL-induced osteoclastogenesis. Sirt6 upregulation by FLL reduces NF-kB-driven Cathepsin K transcription, providing dual suppression.',
-    'Wnt/b-cat':   'Wnt/beta-catenin signaling is the primary anabolic pathway for bone formation. FLL bioactives downregulate DKK1 and SOST (Wnt inhibitors), allowing LRP5/6 receptor activation, beta-catenin nuclear translocation, and RUNX2/Osx transcription. Overlap grade: STRONG.',
+    'Wnt/b-cat':   'Wnt/beta-catenin signaling is the primary anabolic pathway for bone formation. FLL bioactives downregulate DKK1 and SOST (Wnt inhibitors), allowing LRP5/6 receptor activation, beta-catenin nuclear translocation, and RUNX2/Osx transcription. Critically, Oleanolic Acid Acetate (OAA, the acetylated form of oleanolic acid, a primary FLL triterpene) independently induces bone formation and remodeling through modulation of osteoblast, osteoclast, and inflammation with explicit regulation of TGF-beta and Wnt signaling. OAA micro-CT confirms BV/TV increase from 45.6% to 61.8% over 2 weeks in vivo. Overlap grade: STRONG.',
     'RUNX2':       'RUNX2 (Runt-related transcription factor 2) is the master transcription factor for osteoblast differentiation. Required for osteoblast commitment from mesenchymal stem cells. FLL promotes BMSC osteogenic differentiation with increased RUNX2 expression. GO enrichment directly confirms: regulation of osteoblast differentiation (GO:0045667).',
     'BMP/Smad':    'BMP-2 and BMP-7 signal via Smad1/5/8 to drive osteoblast and chondrocyte commitment. Mechanical loading triggers local BMP-2 release at active bone sites. FLL bioactives (ursolic acid) activate BMP/Smad signaling in BMSCs. Overlap grade: STRONG. BMP/Smad is critical to hypertrophic zone expansion and endochondral ossification.',
     'PI3K/Akt':    'PI3K/Akt is the intracellular survival and differentiation pathway. Network pharmacology and in vitro validation link FLL-mediated BMSC osteogenesis to AKT1 activation. Downstream: RUNX2 upregulation and osteogenic differentiation. Overlap grade: PARTIAL.',
@@ -1358,12 +1358,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 
   const nodeImages = {
     // ── Resorption / osteoclast axis ───────────────────────────────────────
-    // Oleanolic acid directly suppresses RANKL-induced osteoclastogenesis
-    'RANKL/RANK':  { src: S + 'Oleanolic_Acid.png?v=1785561299',
-                     cap: 'Oleanolic Acid (FLL active compound): directly suppresses RANKL-induced osteoclastogenesis, blocks RANKL/RANK binding, TRAF6 activation, and the downstream c-Fos/NFATc1 cascade' },
-    // image_9 shows the full TMAO→Sirt6→NF-κB→NFATc1 axis with IHC
-    'NFATc1':      { src: S + 'image_9.png?v=1783411025',
-                     cap: 'FLL → gut flora → FMO3 → TMAO → Sirt6↑ → NF-κB p65↓ → NFATc1↓, dual-axis osteoclastogenesis suppression confirmed by IHC + western blot' },
+    // image_16 shows the Ligustrum lucidum anti-osteoporosis panel with NFATc1/ERK osteoclast axis
+    'RANKL/RANK':  { src: S + 'image_16.png?v=1783411025',
+                     cap: 'Ligustrum lucidum anti-osteoporosis pharmacology: NFATc1/ERK osteoclast suppression axis (left) + Wnt/β-cat/BMP osteoblast promotion (right). FLL targets the RANKL/OPG/RANK cascade to suppress NFATc1 and osteoclast differentiation while simultaneously promoting osteoblastogenesis' },
+    // image_2 is the FLL master mechanism diagram explicitly naming NFATc1, c-Fos, Cathepsin K
+    'NFATc1':      { src: S + 'image_2.png?v=1783411025',
+                     cap: 'FLL master mechanism diagram: RANKL/OPG/RANK → MAPK/Akt → NFATc1, c-Fos, Cathepsin K suppression cascade + PTH/CaSR/VDR calcium axis + Nox4 → NF-κB inhibition. NFATc1 is the convergence point of osteoclastogenic signaling; FLL blocks it via multiple upstream inputs simultaneously' },
     // image_11 shows the ursolic acid immunological network including c-Fos/AP-1
     'c-Fos':       { src: S + 'image_11.png?v=1783411026',
                      cap: 'Ursolic acid (FLL active): NF-κB/pSTAT1/MAPK immunological network suppression, includes c-Fos/AP-1 transcription factor inhibition halting NFATc1 auto-amplification' },
@@ -1377,9 +1377,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     'Cathepsin K':  { src: S + 'image_6.png?v=1783411025',
                      cap: 'FLL reduces Cathepsin K expression in aging bone. IHC (20×/40×) + western blot; Sirt6↑ → NF-κB p65 deacetylation → Cathepsin K transcription suppressed (dual mechanism)' },
     // ── Formation / osteoblast axis ────────────────────────────────────────
-    // Screenshot_155337 shows Wnt/DKK1/SOST/salidroside directly
-    'Wnt/b-cat':   { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',
-                     cap: 'FLL activates Wnt/β-catenin: DKK1 and SOST inhibition drives osteoblast commitment, salidroside identified as primary active ingredient in this pathway' },
+    // IMG_2817 = Oleanolic Acid Acetate (OAA) paper conclusion: "induces bone formation via TGF-β and Wnt signaling"
+    'Wnt/b-cat':   { src: S + 'IMG_2817.png?v=1785561299',
+                     cap: 'Oleanolic Acid Acetate (OAA, FLL active compound) paper conclusion: "OAA induces bone formation and remodeling through proper modulation of osteoblast, osteoclast, and inflammation with regulations of TGF-β and Wnt signaling." OAA is the acetylated derivative of oleanolic acid, a primary FLL triterpene bioactive' },
     // Screenshot_155554 shows the RUNX2/Osx conclusion figure
     'RUNX2':       { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',
                      cap: 'FLL study conclusion: canonical Wnt/β-catenin induction via DKK1/SOST inhibition → RUNX2/Osx upregulation → osteocalcin/collagen-I expression → bone quality preservation' },
@@ -1396,9 +1396,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     // Screenshot_153122 directly shows 1α-OHase mRNA = PTH/VDR axis
     'PTH/VDR':     { src: S + 'Screenshot_20251230_153122_Chrome.jpg?v=1783411025',
                      cap: 'Renal 1α-hydroxylase (PTH/VDR axis) mRNA upregulation by FLL, dose-response quantification of VDR, calbindin-D9k, and TRPV6 calcium transporter cascade' },
-    // Screenshot_153105 directly shows Ca absorption & retention rate dose-response (CaSR/TRPV6 readout)
-    'CaSR':        { src: S + 'Screenshot_20251230_153105_Chrome.jpg?v=1783411025',
-                     cap: 'FLL calcium absorption and retention rate: dose-response data (p<0.01). CaSR/PTH-mediated enhancement of intestinal Ca²⁺ transport and renal Ca reabsorption' },
+    // image_15 directly shows CaSR receptor → improved serum/bone calcium + PTH, BMSCs osteogenesis, Nox4/ROS/NF-κB
+    'CaSR':        { src: S + 'image_15.png?v=1783411025',
+                     cap: 'FLL comprehensive mechanism: CaSR receptor activation → increased PTH → improved serum and bone calcium. Also shows BMSCs differentiation (adipogenesis inhibited, osteogenesis promoted) and Nox4/ROS/NF-κB antioxidant axis. FLL coordinates CaSR, mineral metabolism, and osteoblastogenesis in a unified framework' },
     // ── Signaling / redox axis ─────────────────────────────────────────────
     // image_8 specifically shows Sirt6 IHC in osteoblasts + serum markers
     'Sirt6':       { src: S + 'image_8.png?v=1783411026',
@@ -1448,27 +1448,27 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     // Screenshot_074245 = hypertrophic zone thickness, showing the vascular front boundary
     'VEGF/Vasc.':  { src: S + 'Screenshot_20260107_074245_Chrome.jpg?v=1783411025',
                      cap: 'FLL hypertrophic zone expansion (~24%, p<0.05): expanded zone requires proportional VEGF-driven vascular invasion at the cartilage-bone interface to supply osteoblast precursors and nutrients to the advancing endochondral ossification front' },
-    // Screenshot_155554 = RUNX2/osteocalcin conclusion figure, directly names OCN
-    'Osteocalcin': { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',
-                     cap: 'FLL study conclusion: Wnt/beta-catenin induction via DKK1/SOST suppression drives RUNX2, which directly transcribes osteocalcin (OCN). FLL-treated BMSCs show increased OCN expression, the primary clinical biomarker of active bone formation rate' },
+    // ss_155204 explicitly states "increasing a bone formation maker, OCN" + CTX-I decrease + Ca absorption via calcitropic genes
+    'Osteocalcin': { src: S + 'Screenshot_20251230_155204_Chrome.jpg?v=1783411025',
+                     cap: 'FLL clinical study text: "altered bone turnover, as evidenced by increasing a bone formation maker, OCN, and decreasing a bone resorption maker, CTX-I." Serum osteocalcin (OCN) increase confirmed at p<0.05 in high-dose group. OCN elevation reflects active RUNX2/Osterix-driven osteoblast matrix production, the definitive bone formation biomarker' },
     // image_7 = 3D microCT showing Ct.Ar and Ct.Th improvements = periosteal readout
     'Periosteum':  { src: S + 'image_7.png?v=1783411025',
                      cap: 'FLL 3D microCT: Ct.Ar (cortical area) and Ct.Th (cortical thickness) improvements directly reflect periosteal appositional bone growth, driven by Wnt/beta-catenin and BMP/Smad activation of periosteal osteoprogenitor cells in the cambium layer' },
-    // Screenshot_233830 = PI3K/Akt BMSC osteogenesis figure showing OPN alongside RUNX2
-    'Collagen-I/OPN': { src: S + 'Screenshot_20251230_233830_Chrome.jpg?v=1783411024',
-                     cap: 'FLL BMSC osteogenesis: PI3K/Akt-driven RUNX2 upregulation increases osteopontin (OPN) and collagen-I expression. Kong et al. Bioengineered. 2022 confirms increased OPN alongside RUNX2, providing the structural organic matrix for hydroxyapatite deposition' },
+    // OleanolicAcid.png = OAA micro-CT bone formation in extraction socket: BV/TV 45.6% (DMSO) → 61.8% (OAA)
+    'Collagen-I/OPN': { src: S + 'Oleanolic_Acid.png?v=1785561299',
+                     cap: 'Oleanolic Acid Acetate (OAA, FLL active compound) micro-CT: Figure 6 shows bone volume fraction BV/TV increasing from 45.6% (DMSO control) to 61.8% (OAA-treated) in extraction socket healing over 2 weeks. This net bone formation reflects osteoblast-driven collagen-I matrix deposition and osteopontin-mediated mineralization stimulated by OAA via Wnt/TGF-β signaling' },
     // Screenshot_155554 = RUNX2/Osx conclusion figure (Osterix = SP7, downstream of RUNX2)
     'Osterix/SP7': { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',
                      cap: 'FLL conclusion figure: Wnt/DKK1 inhibition drives RUNX2/Osterix (SP7) axis. Osterix is absolutely required for osteoblast commitment downstream of RUNX2; without Osterix, bone formation is absent even with full RUNX2 expression' },
     // Screenshot_155337 = Wnt/DKK1/SOST figure, directly shows sclerostin/DKK1 inhibition by salidroside
     'Sclerostin':  { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',
                      cap: 'FLL Wnt activation via DKK1 and SOST suppression: salidroside identified as primary active compound blocking sclerostin and DKK1, releasing the LRP5/6 Wnt brake and enabling full beta-catenin nuclear translocation and osteoblast gene expression' },
-    // image_8 = IHC showing IL-2 restoration + TNF-alpha reduction in aging+FLL animals
-    'IL-6/TNF-a':  { src: S + 'image_8.png?v=1783411026',
-                     cap: 'FLL aging study IHC + serum cytokines: significantly restores IL-2 and reduces TNF-alpha in aging animals (Li et al. Aging. 2019;11:9348). NF-kB suppression via TRAF6 and Sirt6 reduces both IL-6 and TNF-alpha transcription, applying a systemic brake on RANKL induction' },
-    // Oleanolic_Acid = osteoclastogenesis suppression including TRAP+ cell count reduction
-    'TRAP':        { src: S + 'Oleanolic_Acid.png?v=1785561299',
-                     cap: 'Oleanolic Acid (FLL active): directly suppresses RANKL-induced TRAP+ osteoclast formation in RAW264.7 cells. TRAP activity reduction is the key cellular readout of osteoclastogenesis suppression, downstream of NFATc1 blockade by FLL' },
+    // image_12 = ursolic acid multi-system: osteoporosis panel shows MAPK/JNK/TNF-α/NF-κB → osteoclast differentiation
+    'IL-6/TNF-a':  { src: S + 'image_12.png?v=1783411026',
+                     cap: 'Ursolic acid (FLL active compound): multi-system mechanistic overview with osteoporosis panel explicitly showing MAPK/JNK/TNF-α/TLR/NF-κB → osteoclast differentiation cascade. Ursolic acid blocks inflammatory cytokine signaling, directly suppressing IL-6 and TNF-α driven osteoclastogenesis and protecting bone from inflammatory resorption' },
+    // image_13 = oleanolic acid (FLL active) multi-organ wheel: bone quadrant explicitly "inhibit osteoclast differentiation"
+    'TRAP':        { src: S + 'image_13.png?v=1783411025',
+                     cap: 'Oleanolic acid (FLL active compound) pharmacology wheel: bone quadrant reads "core target of osteoporosis" and "inhibit osteoclast differentiation." TRAP+ osteoclast suppression is the direct cellular readout of this anti-osteoclastogenic action, downstream of NFATc1 blockade. Center shows oleanolic acid chemical structure' },
     // Screenshot_235137 = ALP/Ca/P deposition: the direct hydroxyapatite mineralization readout
     'Hydroxyapatite': { src: S + 'Screenshot_20251230_235137_Chrome.jpg?v=1783411025',
                      cap: 'FLL in vitro mineralization: time- and dose-dependent increases in extracellular Ca and P depositions directly reflect accelerated hydroxyapatite (Ca10(PO4)6(OH)2) crystal nucleation. ALP Pi liberation + FLL-enhanced Ca2+ supply converge on hydroxyapatite crystal growth' },
@@ -1481,9 +1481,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     // Screenshot_153105 = calcium absorption rate = PTH receptor / cAMP axis dose-response
     'cAMP/PKA':    { src: S + 'Screenshot_20251230_153105_Chrome.jpg?v=1783411025',
                      cap: 'FLL calcium homeostasis dose-response: PTH/CaSR/cAMP/PKA axis drives Ca2+ absorption and retention (p<0.01). The cAMP/PKA/CREB cascade is the same pathway activated by teriparatide (FDA-approved PTH analog), confirming FLL overlap with the most validated anabolic signaling cascade' },
-    // image_9 = TMAO/Sirt6/NF-kB metabolic axis; salidroside activates AMPK in this same axis
-    'AMPK':        { src: S + 'image_9.png?v=1783411025',
-                     cap: 'FLL metabolic signaling axis: salidroside (primary FLL bioactive) activates AMPK across multiple cell types. AMPK activates Sirt6 (shown in IHC), suppresses NF-kB, drives autophagy via ULK1, and supports osteoblast survival and hypertrophic chondrocyte metabolism' },
+    // image_10 = ursolic acid overview: anti-inflammation + regulate polarization + control autophagy → bone/brain/liver/skin
+    'AMPK':        { src: S + 'image_10.png?v=1783411026',
+                     cap: 'Ursolic acid (FLL active): sources, M1/M2 macrophage polarization balance, anti-inflammation (LPS/TLR-4 inhibition), and control of autophagy. AMPK activated by FLL salidroside drives exactly these functions: macrophage M2 polarization, ULK1-mediated autophagy, and NF-κB suppression across bone, brain, liver, and skin systems' },
     // showGraphicalAbstract = SNEDDS absorption pathway; bile acid micellar phase is part of this
     'Bile Acid':   { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883',
                      cap: 'SNEDDS intestinal absorption pathway: SNEDDS nano-droplets interact synergistically with endogenous bile acid micelles in the duodenum, increasing thermodynamic activity of ursolic acid and oleanolic acid in the aqueous phase, complementary to lymphatic bypass and P-gp inhibition' },
