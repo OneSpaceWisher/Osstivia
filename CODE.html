@@ -1065,6 +1065,29 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     {id:'Lymphatic',  name:'Lymphatic Bypass',            group:6,  val:7},
     {id:'P-gp',       name:'P-gp Efflux Inhibition',     group:6,  val:6},
     {id:'Bioavail.',  name:'Bioavailability',              group:6,  val:7},
+    // ── Bone Growth expansion ──
+    {id:'IGF-1/mTOR',    name:'IGF-1 / mTOR Axis',          group:5,  val:9},
+    {id:'Chondro Prolif.',name:'Chondrocyte Proliferation',  group:5,  val:8},
+    {id:'Collagen X',    name:'Type X Collagen',             group:5,  val:7},
+    {id:'VEGF/Vasc.',    name:'VEGF / Vascularization',      group:5,  val:7},
+    {id:'Osteocalcin',   name:'Osteocalcin (OCN)',            group:5,  val:7},
+    {id:'Periosteum',    name:'Periosteum / Appositional',    group:5,  val:7},
+    // ── Formation expansion ──
+    {id:'Collagen-I/OPN',name:'Collagen-I / Osteopontin',    group:2,  val:8},
+    {id:'Osterix/SP7',   name:'Osterix (SP7)',                group:2,  val:8},
+    {id:'Sclerostin',    name:'Sclerostin / DKK1',           group:2,  val:8},
+    // ── Resorption expansion ──
+    {id:'IL-6/TNF-a',    name:'IL-6 / TNF-\u03b1',          group:1,  val:8},
+    {id:'TRAP',          name:'TRAP Activity',                group:1,  val:7},
+    // ── Mineral expansion ──
+    {id:'Hydroxyapatite',name:'Hydroxyapatite',               group:3,  val:8},
+    {id:'FGF23/Klotho',  name:'FGF23 / Klotho',              group:3,  val:8},
+    // ── Signaling expansion ──
+    {id:'mTORC1',        name:'mTORC1 / S6K1',               group:4,  val:8},
+    {id:'cAMP/PKA',      name:'cAMP / PKA / CREB',           group:4,  val:8},
+    {id:'AMPK',          name:'AMPK / Autophagy',             group:4,  val:8},
+    // ── SNEDDS expansion ──
+    {id:'Bile Acid',     name:'Bile Acid Solubilization',     group:6,  val:7},
   ];
 
   const rawLinks = [
@@ -1087,6 +1110,32 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     {s:'SNEDDS',     t:'P-gp',        v:3}, {s:'Lymphatic', t:'Bioavail.',  v:3},
     {s:'Bioavail.',  t:'Center',       v:2}, {s:'Center',    t:'Sirt6',      v:2},
     {s:'BMP/Smad',   t:'Hyp. Zone',   v:2}, {s:'MAPK/Akt',  t:'NFATc1',     v:2},
+    // ── Bone Growth expansion links ──
+    {s:'Mandible',    t:'IGF-1/mTOR',      v:3}, {s:'Mandible',    t:'Chondro Prolif.', v:3},
+    {s:'Mandible',    t:'Osteocalcin',     v:2}, {s:'Mandible',    t:'Periosteum',      v:2},
+    {s:'IGF-1/mTOR',  t:'Chondro Prolif.', v:3}, {s:'Chondro Prolif.', t:'Collagen X', v:3},
+    {s:'Collagen X',  t:'VEGF/Vasc.',      v:2}, {s:'VEGF/Vasc.',  t:'Endo Oss.',       v:2},
+    {s:'Osteocalcin', t:'RUNX2',           v:2}, {s:'Periosteum',  t:'Formation',        v:2},
+    // ── Formation expansion links ──
+    {s:'Formation',   t:'Collagen-I/OPN',  v:3}, {s:'Formation',   t:'Osterix/SP7',     v:3},
+    {s:'Formation',   t:'Sclerostin',      v:2}, {s:'RUNX2',       t:'Osterix/SP7',     v:3},
+    {s:'RUNX2',       t:'Collagen-I/OPN',  v:2}, {s:'Wnt/b-cat',   t:'Sclerostin',      v:2},
+    // ── Resorption expansion links ──
+    {s:'Resorption',  t:'IL-6/TNF-a',      v:3}, {s:'Resorption',  t:'TRAP',            v:3},
+    {s:'NFATc1',      t:'TRAP',            v:2},  {s:'IL-6/TNF-a',  t:'RANKL/RANK',      v:2},
+    // ── Mineral expansion links ──
+    {s:'Mineral',     t:'Hydroxyapatite',  v:3},  {s:'Mineral',     t:'FGF23/Klotho',   v:2},
+    {s:'ALP',         t:'Hydroxyapatite',  v:3},  {s:'CaSR',        t:'Hydroxyapatite', v:2},
+    // ── Signaling expansion links ──
+    {s:'Signaling',   t:'mTORC1',          v:2},  {s:'Signaling',   t:'cAMP/PKA',        v:2},
+    {s:'Signaling',   t:'AMPK',            v:2},  {s:'PI3K/Akt',    t:'mTORC1',          v:2},
+    {s:'AMPK',        t:'Sirt6',           v:2},  {s:'cAMP/PKA',    t:'Wnt/b-cat',       v:2},
+    // ── SNEDDS expansion links ──
+    {s:'SNEDDS',      t:'Bile Acid',       v:2},  {s:'Bile Acid',   t:'Bioavail.',       v:2},
+    // ── Cross-cluster ──
+    {s:'IGF-1/mTOR',  t:'PI3K/Akt',       v:2},  {s:'IGF-1/mTOR',  t:'mTORC1',          v:2},
+    {s:'GO:0071363',  t:'IGF-1/mTOR',     v:2},  {s:'FGF23/Klotho', t:'PTH/VDR',        v:2},
+    {s:'AMPK',        t:'Nox4/ROS',       v:2},
   ];
 
   let activeCategories = new Set([1,2,3,4,5,6]);
@@ -1122,6 +1171,29 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     'Lymphatic':   'SNEDDS nano-droplets are packaged into chylomicrons and absorbed via intestinal lacteals into the lymphatic system, bypassing the portal vein entirely. This circumvents hepatic first-pass metabolism, the primary bottleneck for oral bioavailability of lipophilic botanical compounds.',
     'P-gp':        'P-glycoprotein (P-gp, MDR1/ABCB1) is an efflux transporter on intestinal enterocytes that actively pumps lipophilic compounds back into the gut lumen. SNEDDS surfactant components (polysorbates, Cremophor EL) inhibit P-gp, ensuring maximum intestinal permeation of FLL active compounds.',
     'Bioavail.':   'Net result of SNEDDS delivery: significantly enhanced systemic bioavailability of ursolic acid, oleanolic acid, and salidroside. Higher plasma concentrations lead to greater receptor occupancy and stronger downstream effects at every pathway node.',
+    // ── Bone Growth expansion ──
+    'IGF-1/mTOR':    'IGF-1 (Insulin-like Growth Factor 1) is the primary systemic driver of longitudinal bone growth, acting through IGF-1R on chondrocytes and osteoblasts to drive proliferation and matrix synthesis. FLL GO:0071363 enrichment directly confirms heightened cellular response to IGF-1, meaning FLL-treated bone cells produce greater anabolic output per unit of endogenous IGF-1. mTOR Complex 1 integrates IGF-1, nutrient, and mechanical signals to phosphorylate S6K1 and 4EBP1, driving ribosomal protein synthesis in hypertrophic chondrocytes and osteoblasts. Overlap grade: STRONG via GO:0071363 sensitization, PI3K/Akt engagement, and downstream mTORC1 activation.',
+    'Chondro Prolif.':'Chondrocyte proliferation in the growth plate resting and proliferative zones drives longitudinal bone length expansion by forming columnar stacks. BMP-2, IGF-1, and TGF-beta regulate the rate of chondrocyte column formation and the timing of hypertrophic differentiation. FLL amplifies this proliferative axis: GO:0071363 sensitization boosts IGF-1 and TGF-beta response per cell; BMP/Smad drives chondroblast commitment; Wnt/beta-catenin regulates the proliferative-to-pre-hypertrophic transition timing. The 24-32% hypertrophic zone expansion observed in FLL Safranin-O histology reflects increased throughput of this upstream proliferative input.',
+    'Collagen X':    'Type X collagen (COL10A1) is the defining extracellular matrix protein of hypertrophic chondrocytes. Its expression is driven by RUNX2 and Osterix at the hypertrophic front and serves as the structural scaffold for vascular invasion and osteoblast colonization. COL10A1 is a direct RUNX2 transcriptional target, directly linking FLL RUNX2 upregulation to cartilage-bone interface maturation. The 24-32% expanded hypertrophic zone in FLL-treated animals implies proportionally increased COL10A1 deposition, providing a wider mineralization template for endochondral ossification. Mutation in COL10A1 causes Schmid metaphyseal chondrodysplasia, confirming its non-redundant structural role.',
+    'VEGF/Vasc.':    'VEGF (Vascular Endothelial Growth Factor) is secreted by hypertrophic chondrocytes and drives vascular invasion at the cartilage-bone interface, a required step in endochondral ossification. Without vascular invasion, endochondral ossification cannot proceed: blood vessels deliver osteoclast precursors to clear cartilage debris, osteoblast precursors for colonization, and nutrients to the advancing ossification front. IGF-1, BMP-2, and mechanical loading all upregulate VEGF in hypertrophic chondrocytes. FLL GO:0071363 enrichment includes VEGF-related growth factor response pathways. The expanded hypertrophic zone in FLL histology requires proportional vascular invasion to mineralize the new cartilage template.',
+    'Osteocalcin':   'Osteocalcin (OCN/BGLAP) is the most abundant non-collagenous protein in bone matrix, secreted exclusively by mature osteoblasts, and the primary clinical biomarker of bone formation rate. RUNX2 directly drives osteocalcin gene transcription. FLL promotes BMSC osteogenic differentiation with significantly increased osteocalcin expression alongside RUNX2 and osteopontin (Kong et al. Bioengineered. 2022;13:10640). FLL-treated animals show higher serum osteocalcin vs. controls. Osteocalcin also functions systemically as a hormone: it enhances insulin secretion, muscle glucose uptake, and memory consolidation, making FLL-driven bone formation a whole-body metabolic benefit beyond structural accrual.',
+    'Periosteum':    'The periosteum is the fibrous vascularized membrane covering cortical bone surfaces. Its cambium (inner) layer contains osteoprogenitor cells responsible for appositional bone growth, the process that increases cortical thickness and cross-sectional area. FLL 3D microCT data shows improvements in both Ct.Ar (cortical area) and Ct.Th (cortical thickness), consistent with periosteal osteoprogenitor activation. Wnt/beta-catenin and BMP/Smad both activate periosteal progenitors. The periosteum is also the primary source of callus cells during fracture healing, making periosteal progenitor pool expansion relevant to both growth maintenance and injury repair throughout the skeleton.',
+    // ── Formation expansion ──
+    'Collagen-I/OPN':'Type I collagen (COL1A1/COL1A2) is the structural scaffold of bone matrix, comprising approximately 90% of the organic matrix in both cortical and trabecular bone. Osteopontin (OPN/SPP1) is a phosphorylated glycoprotein mediating cell adhesion, mineral crystal nucleation, and the osteoclast sealing zone interface. Both are direct RUNX2 transcriptional targets downstream of Wnt/beta-catenin and BMP/Smad. FLL promotes BMSC osteogenesis with increased RUNX2 and OPN expression (Kong et al. Bioengineered. 2022;13:10640). Whole-bone 3-point bending strength improvements in FLL microCT studies reflect collagen-I cross-linking density and OPN-mediated organic-mineral interface integrity that determines true bone toughness.',
+    'Osterix/SP7':   'Osterix (Osx/SP7) is a zinc-finger transcription factor acting downstream of RUNX2 and is absolutely required for osteoblast differentiation: in Osx-null mice, RUNX2 is expressed normally but bone formation is completely absent, placing Osx as the second essential master regulator. Osterix drives osteocalcin, BSP (bone sialoprotein), and collagen-I expression. FLL GO enrichment identifies regulation of osteoblast differentiation (GO:0045667) and positive regulation of ossification (GO:0045778), both requiring Osterix activity. Salidroside (primary FLL bioactive) activates Wnt/beta-catenin which licenses Osterix transcription through beta-catenin/LEF/TCF complexes. Overlap grade: STRONG via RUNX2 induction and Wnt pathway activation.',
+    'Sclerostin':    'Sclerostin (SOST) and Dickkopf-1 (DKK1) are secreted glycoproteins that inhibit Wnt/beta-catenin signaling by binding LRP5/6 coreceptors, blocking Wnt-receptor complex formation. They act as mechano-sensing brakes: high mechanical load suppresses sclerostin in osteocytes, releasing the Wnt brake and allowing bone accrual. FLL salidroside directly suppresses DKK1 and SOST expression, effectively releasing the Wnt brake even in low-mechanical-load conditions (Xu et al. J Ethnopharmacol. 2020;258:112904). This mechanism is clinically validated by romosozumab (anti-sclerostin monoclonal antibody), an FDA-approved anabolic therapy for osteoporosis. Overlap grade: STRONG, DKK1/SOST suppression is the primary FLL mechanism for Wnt pathway activation.',
+    // ── Resorption expansion ──
+    'IL-6/TNF-a':    'IL-6 and TNF-alpha are the primary pro-inflammatory cytokines driving osteoclastogenesis by inducing RANKL expression in osteoblasts and stromal cells. Both are NF-kB transcriptional targets, meaning FLL TRAF6/NF-kB and Sirt6 suppression directly reduces their production. TNF-alpha can additionally activate RANK-independent osteoclastogenesis via TNFR1. FLL ethanol extract significantly restores serum IL-2 and reduces TNF-alpha in aging animals (Li et al. Aging. 2019;11:9348). AP-1 (c-Fos/c-Jun) drives transcription of IL-1beta, IL-6, and TNF-alpha, making c-Fos suppression by FLL a dual anti-resorptive and anti-inflammatory mechanism. Serum IL-6 and TNF-alpha are validated clinical biomarkers of bone resorption rate.',
+    'TRAP':          'TRAP (Tartrate-Resistant Acid Phosphatase, ACP5b) is a metalloproteinase secreted by mature osteoclasts during active bone resorption and is the gold standard marker of osteoclast activity. TRAP+ multinuclear cell count is the primary assay for osteoclastogenesis in vitro; serum TRAP5b is used clinically as a biomarker for resorption rate. FLL ethanol extract significantly reduces TRAP+ cell count and TRAP activity in RANKL-stimulated RAW264.7 cultures, directly quantifying osteoclastogenesis suppression at the cellular level (Xu et al. Mol Med Reports. 2016;14:4767). TRAP reduction is downstream of NFATc1 suppression: without NFATc1, osteoclast precursors cannot upregulate TRAP or fuse into multinuclear resorbing cells.',
+    // ── Mineral expansion ──
+    'Hydroxyapatite':'Hydroxyapatite (Ca10(PO4)6(OH)2) is the primary mineral crystal of bone, comprising approximately 70% of bone dry weight and providing compressive strength and hardness. Its nucleation requires simultaneous Ca2+ supply (FLL PTH/VDR/TRPV6/CaSR axis) and inorganic phosphate Pi (ALP-mediated pyrophosphate cleavage). FLL simultaneously enhances Ca2+ availability and ALP activity, accelerating hydroxyapatite crystal deposition. The time- and dose-dependent increases in extracellular Ca and P depositions in FLL-treated osteoblasts (Chen et al. Molecules. 2017;22:1469) directly reflect accelerated hydroxyapatite crystal nucleation. BMD, BV/TV, Tb.N, and Ct.Th improvements in FLL microCT studies all ultimately represent increased hydroxyapatite deposition in the extracellular matrix.',
+    'FGF23/Klotho':  'FGF23 (Fibroblast Growth Factor 23) is secreted by osteocytes and regulates phosphate homeostasis by suppressing renal phosphate reabsorption and inhibiting renal 1alpha-hydroxylase. Klotho is the obligate FGF23 co-receptor and an anti-aging longevity protein: Klotho-deficient mice develop rapid aging phenotypes including severe osteoporosis and ectopic calcification. High FGF23 is associated with bone loss in aging and chronic kidney disease. Salidroside (primary FLL bioactive) has documented Klotho-upregulating activity, providing a direct FLL connection to this longevity axis. FLL PTH/VDR axis enhancement occurs upstream of FGF23 feedback, and properly calibrated FGF23/Klotho activity ensures adequate phosphate retention for hydroxyapatite deposition throughout the skeleton.',
+    // ── Signaling expansion ──
+    'mTORC1':        'mTORC1 (mechanistic Target of Rapamycin Complex 1) integrates IGF-1, nutrients, and mechanical signals via PI3K/Akt to phosphorylate S6K1 and 4EBP1, driving protein synthesis. In osteoblasts, mTORC1 is essential for rapid bone matrix protein production. In hypertrophic chondrocytes, mTORC1 drives metabolic activity for matrix vesicle secretion and type X collagen production. FLL PI3K/Akt activation downstream implies mTORC1 engagement. Rapamycin (mTOR inhibitor) causes osteoporosis and growth plate arrest in animals, confirming mTOR essentiality to skeletal metabolism. GO enrichment of FLL identifies protein complex assembly (GO:0043254) consistent with mTOR-driven ribosome biogenesis and anabolic protein synthesis upregulation.',
+    'cAMP/PKA':      'cAMP/PKA/CREB is the primary intracellular cascade downstream of PTH1R (PTH/PTHrP receptor). PTH binds PTH1R, activating Gs protein, adenylyl cyclase, cAMP production, PKA activation, and CREB phosphorylation, driving bone anabolic gene expression. Intermittent PTH administration (teriparatide) is an FDA-approved anabolic therapy for osteoporosis, acting entirely through this cascade. FLL PTH/VDR axis enhancement implies improved PTH receptor responsiveness, and elevated 1,25(OH)2D3 upregulates CREB co-activator expression. cAMP/PKA also cross-activates Wnt/beta-catenin signaling in osteoblasts. In growth plate chondrocytes, cAMP/CREB maintains the proliferative zone by suppressing premature hypertrophic differentiation via PTHrP signaling.',
+    'AMPK':          'AMPK (AMP-activated Protein Kinase) is the cellular energy sensor activated by elevated AMP/ATP ratio and upstream kinases LKB1 and CaMKK-beta. In bone, AMPK promotes osteoblast activity and survival while suppressing osteoclastogenesis via NF-kB inhibition. AMPK activates autophagy through ULK1 phosphorylation, clearing damaged organelles and maintaining osteocyte viability in mineralized matrix. Salidroside (primary FLL bioactive) is a well-documented AMPK activator across multiple cell types. AMPK phosphorylates and activates Sirt1/Sirt6, directly connecting FLL Sirt6 upregulation to AMPK-mediated metabolic signaling. In hypertrophic chondrocytes, AMPK-driven mitochondrial biogenesis supports the high metabolic demand of matrix vesicle secretion and type X collagen production.',
+    // ── SNEDDS expansion ──
+    'Bile Acid':     'Bile acids secreted by the liver into the duodenum form mixed micelles that solubilize dietary lipids and fat-soluble compounds including FLL triterpenes (ursolic acid, oleanolic acid). SNEDDS nano-droplets interact synergistically with endogenous bile acid micelles, increasing thermodynamic activity of lipophilic compounds in the intestinal aqueous phase. This bile acid micellar partitioning is a distinct absorption enhancement mechanism complementary to SNEDDS lymphatic bypass and P-gp inhibition. Salidroside is also a substrate for intestinal bile acid-related transporters, making bile acid flux relevant beyond the triterpene fraction. Adequate bile acid secretion is part of the complete absorption efficiency picture for the full Osstivia compound spectrum.',
   };
 
   // Build D3 simulation
@@ -1363,6 +1435,58 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
     // showGraphicalAbstract shows net bioavailability outcome
     'Bioavail.':   { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883',
                      cap: 'SNEDDS net bioavailability advantage: superior systemic exposure of ursolic acid, oleanolic acid, and salidroside, higher plasma concentrations drive greater receptor occupancy at every pathway node' },
+    // ── New node images ───────────────────────────────────────────────────
+    // IMG_1503 = GO Molecular Function: kinase/receptor enrichment, best for IGF-1/mTOR
+    'IGF-1/mTOR':  { src: S + 'IMG_1503.jpg?v=1783411025',
+                     cap: 'GO Molecular Function Enrichment: FLL enriches kinase activity and growth factor receptor binding (including IGF-1R). FLL-treated cells amplify IGF-1 signaling throughput via PI3K/Akt/mTORC1, producing greater bone anabolic output per unit endogenous IGF-1' },
+    // image_5 = cartilage Safranin-O histology, best for chondrocyte proliferation columns
+    'Chondro Prolif.': { src: S + 'image_5.png?v=1783411025',
+                     cap: 'FLL cartilage histology: Safranin-O/GAG staining shows expanded chondrocyte columns. FLL amplifies chondrocyte proliferation via GO:0071363 IGF-1 sensitization and BMP/Smad, increasing throughput of the growth template upstream of hypertrophic differentiation' },
+    // IMG_9200 = trabecular histology with endochondral zones, best for type X collagen scaffold
+    'Collagen X':  { src: S + 'IMG_9200.jpg?v=1783411025',
+                     cap: 'FLL endochondral ossification histology: expanded hypertrophic zone implies increased COL10A1 (type X collagen) deposition by RUNX2-driven hypertrophic chondrocytes, providing the structural scaffold for vascular invasion and osteoblast colonization' },
+    // Screenshot_074245 = hypertrophic zone thickness, showing the vascular front boundary
+    'VEGF/Vasc.':  { src: S + 'Screenshot_20260107_074245_Chrome.jpg?v=1783411025',
+                     cap: 'FLL hypertrophic zone expansion (~24%, p<0.05): expanded zone requires proportional VEGF-driven vascular invasion at the cartilage-bone interface to supply osteoblast precursors and nutrients to the advancing endochondral ossification front' },
+    // Screenshot_155554 = RUNX2/osteocalcin conclusion figure, directly names OCN
+    'Osteocalcin': { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',
+                     cap: 'FLL study conclusion: Wnt/beta-catenin induction via DKK1/SOST suppression drives RUNX2, which directly transcribes osteocalcin (OCN). FLL-treated BMSCs show increased OCN expression, the primary clinical biomarker of active bone formation rate' },
+    // image_7 = 3D microCT showing Ct.Ar and Ct.Th improvements = periosteal readout
+    'Periosteum':  { src: S + 'image_7.png?v=1783411025',
+                     cap: 'FLL 3D microCT: Ct.Ar (cortical area) and Ct.Th (cortical thickness) improvements directly reflect periosteal appositional bone growth, driven by Wnt/beta-catenin and BMP/Smad activation of periosteal osteoprogenitor cells in the cambium layer' },
+    // Screenshot_233830 = PI3K/Akt BMSC osteogenesis figure showing OPN alongside RUNX2
+    'Collagen-I/OPN': { src: S + 'Screenshot_20251230_233830_Chrome.jpg?v=1783411024',
+                     cap: 'FLL BMSC osteogenesis: PI3K/Akt-driven RUNX2 upregulation increases osteopontin (OPN) and collagen-I expression. Kong et al. Bioengineered. 2022 confirms increased OPN alongside RUNX2, providing the structural organic matrix for hydroxyapatite deposition' },
+    // Screenshot_155554 = RUNX2/Osx conclusion figure (Osterix = SP7, downstream of RUNX2)
+    'Osterix/SP7': { src: S + 'Screenshot_20251230_155554_Chrome.jpg?v=1783411025',
+                     cap: 'FLL conclusion figure: Wnt/DKK1 inhibition drives RUNX2/Osterix (SP7) axis. Osterix is absolutely required for osteoblast commitment downstream of RUNX2; without Osterix, bone formation is absent even with full RUNX2 expression' },
+    // Screenshot_155337 = Wnt/DKK1/SOST figure, directly shows sclerostin/DKK1 inhibition by salidroside
+    'Sclerostin':  { src: S + 'Screenshot_20251230_155337_Chrome.jpg?v=1783411025',
+                     cap: 'FLL Wnt activation via DKK1 and SOST suppression: salidroside identified as primary active compound blocking sclerostin and DKK1, releasing the LRP5/6 Wnt brake and enabling full beta-catenin nuclear translocation and osteoblast gene expression' },
+    // image_8 = IHC showing IL-2 restoration + TNF-alpha reduction in aging+FLL animals
+    'IL-6/TNF-a':  { src: S + 'image_8.png?v=1783411026',
+                     cap: 'FLL aging study IHC + serum cytokines: significantly restores IL-2 and reduces TNF-alpha in aging animals (Li et al. Aging. 2019;11:9348). NF-kB suppression via TRAF6 and Sirt6 reduces both IL-6 and TNF-alpha transcription, applying a systemic brake on RANKL induction' },
+    // Oleanolic_Acid = osteoclastogenesis suppression including TRAP+ cell count reduction
+    'TRAP':        { src: S + 'Oleanolic_Acid.png?v=1785561299',
+                     cap: 'Oleanolic Acid (FLL active): directly suppresses RANKL-induced TRAP+ osteoclast formation in RAW264.7 cells. TRAP activity reduction is the key cellular readout of osteoclastogenesis suppression, downstream of NFATc1 blockade by FLL' },
+    // Screenshot_235137 = ALP/Ca/P deposition: the direct hydroxyapatite mineralization readout
+    'Hydroxyapatite': { src: S + 'Screenshot_20251230_235137_Chrome.jpg?v=1783411025',
+                     cap: 'FLL in vitro mineralization: time- and dose-dependent increases in extracellular Ca and P depositions directly reflect accelerated hydroxyapatite (Ca10(PO4)6(OH)2) crystal nucleation. ALP Pi liberation + FLL-enhanced Ca2+ supply converge on hydroxyapatite crystal growth' },
+    // Screenshot_153122 = PTH/VDR axis figure, best proxy for FGF23/Klotho phosphate/vitamin D context
+    'FGF23/Klotho': { src: S + 'Screenshot_20251230_153122_Chrome.jpg?v=1783411025',
+                     cap: 'FLL renal 1alpha-hydroxylase upregulation (PTH/VDR axis): FGF23/Klotho provides the phosphate homeostasis counterpart. Salidroside-mediated Klotho upregulation combines with VDR enhancement to fully calibrate mineral supply for hydroxyapatite deposition throughout the skeleton' },
+    // IMG_1503 = GO Molecular Function enrichment: kinase/mTOR pathway targets
+    'mTORC1':      { src: S + 'IMG_1503.jpg?v=1783411025',
+                     cap: 'GO Molecular Function Enrichment: FLL enriches kinase activity and PI3K/mTOR pathway targets. mTORC1 downstream of PI3K/Akt drives S6K1/4EBP1 phosphorylation, increasing ribosomal protein synthesis in osteoblasts and hypertrophic chondrocytes for rapid bone matrix production' },
+    // Screenshot_153105 = calcium absorption rate = PTH receptor / cAMP axis dose-response
+    'cAMP/PKA':    { src: S + 'Screenshot_20251230_153105_Chrome.jpg?v=1783411025',
+                     cap: 'FLL calcium homeostasis dose-response: PTH/CaSR/cAMP/PKA axis drives Ca2+ absorption and retention (p<0.01). The cAMP/PKA/CREB cascade is the same pathway activated by teriparatide (FDA-approved PTH analog), confirming FLL overlap with the most validated anabolic signaling cascade' },
+    // image_9 = TMAO/Sirt6/NF-kB metabolic axis; salidroside activates AMPK in this same axis
+    'AMPK':        { src: S + 'image_9.png?v=1783411025',
+                     cap: 'FLL metabolic signaling axis: salidroside (primary FLL bioactive) activates AMPK across multiple cell types. AMPK activates Sirt6 (shown in IHC), suppresses NF-kB, drives autophagy via ULK1, and supports osteoblast survival and hypertrophic chondrocyte metabolism' },
+    // showGraphicalAbstract = SNEDDS absorption pathway; bile acid micellar phase is part of this
+    'Bile Acid':   { src: S + 'showGraphicalAbstractImage_1ed58f1c-fd8a-4e3f-8380-1535dc82a33a.jpg?v=1781479883',
+                     cap: 'SNEDDS intestinal absorption pathway: SNEDDS nano-droplets interact synergistically with endogenous bile acid micelles in the duodenum, increasing thermodynamic activity of ursolic acid and oleanolic acid in the aqueous phase, complementary to lymphatic bypass and P-gp inhibition' },
   };
 
   function showPanel(node) {
